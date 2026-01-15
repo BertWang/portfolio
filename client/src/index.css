@@ -152,6 +152,69 @@
 }
 
 @layer components {
+  /* 動畫效果 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDelay1 {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    50% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDelay2 {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    70% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-1 {
+    animation: fadeInDelay1 1.2s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeInDelay2 1.6s ease-out forwards;
+  }
+
+  /* 微妙的懸停效果 */
+  .group:hover .group-hover\:gap-2 {
+    gap: 0.5rem;
+  }
+
+  /* 平滑滾動 */
+  html {
+    scroll-behavior: smooth;
+  }
   /* 區域化 SEO 與動態互動樣式 */
   
   /* 平滑滾動 */

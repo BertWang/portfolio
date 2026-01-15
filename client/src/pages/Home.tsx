@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { personalInfo, careerTimeline, documentaryProjects, spiritualPractices, ayurvedicContributions } from '@/data/portfolio';
+import { personalInfo, careerTimeline, documentaryProjects, spiritualPractices, ayurvedicContributions, services, portfolioWorks } from '@/data/portfolio';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'career' | 'documentary' | 'spiritual' | 'ayurveda'>('career');
+  const [activeTab, setActiveTab] = useState<'career' | 'documentary' | 'spiritual' | 'ayurveda' | 'services' | 'portfolio'>('services');
+  const [contactForm, setContactForm] = useState({ name: '', email: '', message: '', service: '' });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // 簡單的表單提交邏輯
+    alert(`感謝您的聯絡！我會盡快回復您。\n\n聯絡方式：${personalInfo.phone}\nEmail: ${personalInfo.email}`);
+    setContactForm({ name: '', email: '', message: '', service: '' });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -18,16 +26,25 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
-        <div className="relative z-10 text-center text-white px-4 max-w-2xl">
+        <div className="relative z-10 text-center text-white px-4 max-w-3xl">
           <h1 className="text-5xl md:text-6xl font-serif font-bold mb-4">王純瑋</h1>
           <p className="text-xl md:text-2xl mb-2">{personalInfo.englishName} | {personalInfo.alias}</p>
-          <p className="text-lg md:text-xl opacity-90 mb-8">{personalInfo.tagline}</p>
-          <button
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 bg-[#8B7355] hover:bg-[#A0826D] text-white rounded-lg transition-colors duration-300"
-          >
-            探索我的故事
-          </button>
+          <p className="text-lg md:text-xl opacity-90 mb-2">{personalInfo.tagline}</p>
+          <p className="text-sm md:text-base opacity-80 mb-8">📞 {personalInfo.phone} | 📧 {personalInfo.email}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 bg-[#8B7355] hover:bg-[#A0826D] text-white rounded-lg transition-colors duration-300"
+            >
+              查看服務
+            </button>
+            <button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-3 bg-[#7BA89F] hover:bg-[#6B9A91] text-white rounded-lg transition-colors duration-300"
+            >
+              立即接案
+            </button>
+          </div>
         </div>
       </section>
 
@@ -36,7 +53,7 @@ export default function Home() {
         <div className="container max-w-4xl">
           <div className="mb-12">
             <h2 className="text-4xl font-serif font-bold mb-6 text-warm-primary">關於我</h2>
-            <p className="text-lg leading-relaxed text-foreground mb-4">
+            <p className="text-lg leading-relaxed text-foreground mb-4 whitespace-pre-line">
               {personalInfo.bio}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -46,12 +63,62 @@ export default function Home() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 bg-white border-2 border-warm-primary text-warm-primary hover:bg-warm-primary hover:text-white transition-colors duration-300 rounded-lg"
+                  className="px-4 py-2 bg-white border-2 border-warm-primary text-warm-primary hover:bg-warm-primary hover:text-white transition-colors duration-300 rounded-lg text-sm"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-16 md:py-24 bg-background">
+        <div className="container max-w-5xl">
+          <h2 className="text-4xl font-serif font-bold mb-12 text-warm-primary text-center">服務項目</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service) => (
+              <div key={service.id} className="card-warm">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-serif font-bold text-foreground mb-3">{service.title}</h3>
+                <p className="text-foreground">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-16 md:py-24 bg-gradient-warm">
+        <div className="container max-w-5xl">
+          <h2 className="text-4xl font-serif font-bold mb-12 text-warm-primary text-center">作品集</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {portfolioWorks.map((work) => (
+              <div key={work.id} className="card-warm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className="aspect-video bg-secondary mb-4 rounded-lg overflow-hidden">
+                  <img 
+                    src={work.image} 
+                    alt={work.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <p className="text-sm text-warm-secondary font-bold mb-2">{work.category}</p>
+                <h4 className="text-xl font-serif font-bold text-foreground mb-2">{work.title}</h4>
+                <p className="text-foreground text-sm">{work.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-foreground mb-4">更多作品請查看 Google Drive 作品集</p>
+            <a
+              href="https://drive.google.com/drive/folders/1gfG9SFLGnk_dwdt5O3RFuxC4z6m789g1?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 bg-warm-primary text-white hover:bg-[#A0826D] transition-colors duration-300 rounded-lg"
+            >
+              查看完整作品集
+            </a>
           </div>
         </div>
       </section>
@@ -70,7 +137,7 @@ export default function Home() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-2 font-serif font-bold text-lg transition-colors duration-300 ${
+                className={`px-4 py-2 font-serif font-bold text-sm md:text-base transition-colors duration-300 ${
                   activeTab === tab.id
                     ? 'text-warm-primary border-b-4 border-warm-primary'
                     : 'text-muted-foreground hover:text-foreground'
@@ -126,21 +193,6 @@ export default function Home() {
                   {project.award && (
                     <p className="text-sm text-warm-secondary font-bold mb-4">🏆 {project.award}</p>
                   )}
-                  {project.links && (
-                    <div className="flex flex-wrap gap-2">
-                      {project.links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-warm-primary text-white hover:bg-[#A0826D] transition-colors duration-300 rounded-lg text-sm"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -176,21 +228,79 @@ export default function Home() {
                   </div>
                 </div>
               ))}
-              <div className="card-warm bg-secondary/50 border-2 border-warm-secondary">
-                <p className="text-foreground">
-                  如欲了解更多阿育吠陀知識，歡迎訪問{' '}
-                  <a
-                    href="https://bertwang.github.io/ayurveda_vaidya/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-warm-primary font-bold hover:underline"
-                  >
-                    朱婕老師的阿育吠陀筆記分享網站
-                  </a>
-                </p>
-              </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 md:py-24 bg-gradient-warm">
+        <div className="container max-w-2xl">
+          <h2 className="text-4xl font-serif font-bold mb-12 text-warm-primary text-center">立即聯絡我</h2>
+          <div className="card-warm">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-bold text-foreground mb-2">姓名 *</label>
+                <input
+                  type="text"
+                  required
+                  value={contactForm.name}
+                  onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                  className="w-full px-4 py-2 border-2 border-border rounded-lg focus:border-warm-primary focus:outline-none transition-colors"
+                  placeholder="請輸入您的姓名"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-foreground mb-2">Email *</label>
+                <input
+                  type="email"
+                  required
+                  value={contactForm.email}
+                  onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                  className="w-full px-4 py-2 border-2 border-border rounded-lg focus:border-warm-primary focus:outline-none transition-colors"
+                  placeholder="請輸入您的 Email"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-foreground mb-2">服務項目 *</label>
+                <select
+                  required
+                  value={contactForm.service}
+                  onChange={(e) => setContactForm({ ...contactForm, service: e.target.value })}
+                  className="w-full px-4 py-2 border-2 border-border rounded-lg focus:border-warm-primary focus:outline-none transition-colors"
+                >
+                  <option value="">請選擇服務項目</option>
+                  {services.map((service) => (
+                    <option key={service.id} value={service.title}>
+                      {service.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-foreground mb-2">訊息 *</label>
+                <textarea
+                  required
+                  value={contactForm.message}
+                  onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                  className="w-full px-4 py-2 border-2 border-border rounded-lg focus:border-warm-primary focus:outline-none transition-colors resize-none"
+                  rows={5}
+                  placeholder="請詳細描述您的需求..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-full px-6 py-3 bg-warm-primary text-white hover:bg-[#A0826D] transition-colors duration-300 rounded-lg font-bold"
+              >
+                提交聯絡表單
+              </button>
+            </form>
+            <div className="mt-8 pt-8 border-t-2 border-border">
+              <p className="text-foreground mb-4 font-bold">直接聯絡方式：</p>
+              <p className="text-lg mb-2">📞 <a href={`tel:${personalInfo.phone}`} className="text-warm-primary hover:underline">{personalInfo.phone}</a></p>
+              <p className="text-lg">📧 <a href={`mailto:${personalInfo.email}`} className="text-warm-primary hover:underline">{personalInfo.email}</a></p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -205,9 +315,12 @@ export default function Home() {
             <div>
               <h5 className="font-serif font-bold text-lg mb-4">聯絡方式</h5>
               <p className="text-sm opacity-90">
-                Email: <a href={`mailto:${personalInfo.email}`} className="hover:underline">{personalInfo.email}</a>
+                📞 <a href={`tel:${personalInfo.phone}`} className="hover:underline">{personalInfo.phone}</a>
               </p>
-              <p className="text-sm opacity-90">Location: {personalInfo.location}</p>
+              <p className="text-sm opacity-90">
+                📧 <a href={`mailto:${personalInfo.email}`} className="hover:underline">{personalInfo.email}</a>
+              </p>
+              <p className="text-sm opacity-90">📍 {personalInfo.location}</p>
             </div>
             <div>
               <h5 className="font-serif font-bold text-lg mb-4">社群連結</h5>

@@ -159,17 +159,95 @@ export const ayurvedicContributions: AyurvedicContribution[] = [
   },
 ];
 
+// 服務項目
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export const services: Service[] = [
+  {
+    id: "web-design",
+    title: "網站設計",
+    description: "從概念到完成的全面網站設計服務，包括 UI/UX 設計、響應式設計、品牌視覺識別。",
+    icon: "🎨",
+  },
+  {
+    id: "web-php",
+    title: "網站 PHP 程式",
+    description: "18年 PHP 開發經驗，提供後端系統開發、數據庫設計、API 整合等專業服務。",
+    icon: "💻",
+  },
+  {
+    id: "seo",
+    title: "網站 SEO",
+    description: "搜尋引擎優化服務，提升網站排名與流量，包括技術 SEO、內容優化、關鍵詞策略。",
+    icon: "🔍",
+  },
+  {
+    id: "video-edit",
+    title: "影片剪輯",
+    description: "專業影片剪輯服務，包括紀錄片製作、社群媒體影片、宣傳片等多種類型。",
+    icon: "✂️",
+  },
+  {
+    id: "video-shoot",
+    title: "影片拍攝",
+    description: "專業影片拍攝服務，包括企業宣傳片、紀錄片、活動記錄等高品質視頻製作。",
+    icon: "🎬",
+  },
+];
+
+// 作品集
+export interface Portfolio {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  link?: string;
+}
+
+export const portfolioWorks: Portfolio[] = [
+  {
+    id: "chilips",
+    title: "CHILIPS 電子鎖品牌設計",
+    category: "品牌設計",
+    description: "電子鎖品牌的完整視覺識別系統設計，包括 Logo、網站設計、行銷物料。",
+    image: "/images/design-1.jpg",
+  },
+  {
+    id: "warm-home",
+    title: "溫ㄟ宅修 家修服務網站",
+    category: "網站設計 & PHP 程式",
+    description: "家修服務平台的網站設計與後端系統開發，包括預約系統、客戶管理、支付整合。",
+    image: "/images/design-2.jpg",
+  },
+  {
+    id: "soyui-coffee",
+    title: "SOYUI COFFEE 品牌設計",
+    category: "品牌設計",
+    description: "咖啡品牌的完整視覺識別設計，包括包裝設計、店面視覺、社群媒體素材。",
+    image: "/images/design-3.jpg",
+  },
+];
+
 // 個人簡介
 export const personalInfo = {
   name: "王純瑋",
   englishName: "Bert Wang",
   alias: "微波林克 (Weblink)",
   tagline: "在喧鬧世界裡尋找細微溫度的影像創作者",
+  phone: "0901404663",
   bio: `王純瑋是一位跨領域的專業人士，擁有約18-19年的資歷。他的職涯從美術設計轉向網頁技術開發，同時深耕於文史保存、影像紀錄與靈性探索。
 
 作為「微波林克」，他透過影像創作與社群參與，為台南的文化保存與社會議題發聲。同時，他也是阿育吠陀知識的重要傳承者，將朱婕老師的智慧數位化並分享予世人。
 
-他的所有工作都圍繞著一個核心理念：「技術服務於靈性」，致力於透過數位手段修補受眾破碎的情感，在喧囂的社會運動中尋找那一抹「細微的溫度」。`,
+他的所有工作都圍繞著一個核心理念：「技術服務於靈性」，致力於透過數位手段修補受眾破碎的情感，在喧囂的社會運動中尋找那一抹「細微的溫度」。
+
+**現正開放接案**，歡迎洽詢網站設計、PHP 程式開發、SEO 優化、影片剪輯與拍攝等服務。`,
   location: "台南",
   email: "weblink1982@gmail.com",
   socialLinks: [

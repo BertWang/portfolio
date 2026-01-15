@@ -51,23 +51,36 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-16 md:py-24 bg-gradient-warm">
         <div className="container max-w-4xl">
-          <div className="mb-12">
-            <h2 className="text-4xl font-serif font-bold mb-6 text-warm-primary">關於我</h2>
-            <p className="text-lg leading-relaxed text-foreground mb-4 whitespace-pre-line">
-              {personalInfo.bio}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              {personalInfo.socialLinks.map((link) => (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-white border-2 border-warm-primary text-warm-primary hover:bg-warm-primary hover:text-white transition-colors duration-300 rounded-lg text-sm"
-                >
-                  {link.label}
-                </a>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 items-start">
+            {/* Profile Image */}
+            <div className="md:col-span-1">
+              <div className="rounded-lg overflow-hidden shadow-lg sticky top-8">
+                <img
+                  src="/images/bert-profile.jpg"
+                  alt="王純瑋"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+            {/* Bio Content */}
+            <div className="md:col-span-2">
+              <h2 className="text-4xl font-serif font-bold mb-6 text-warm-primary">關於我</h2>
+              <p className="text-lg leading-relaxed text-foreground mb-4 whitespace-pre-line">
+                {personalInfo.bio}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                {personalInfo.socialLinks.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-white border-2 border-warm-primary text-warm-primary hover:bg-warm-primary hover:text-white transition-colors duration-300 rounded-lg text-sm"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -93,31 +106,41 @@ export default function Home() {
       <section id="portfolio" className="py-16 md:py-24 bg-gradient-warm">
         <div className="container max-w-5xl">
           <h2 className="text-4xl font-serif font-bold mb-12 text-warm-primary text-center">作品集</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {portfolioWorks.map((work) => (
-              <div key={work.id} className="card-warm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <a
+                key={work.id}
+                href={work.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-warm overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer block group"
+              >
                 <div className="aspect-video bg-secondary mb-4 rounded-lg overflow-hidden">
                   <img 
                     src={work.image} 
                     alt={work.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <p className="text-sm text-warm-secondary font-bold mb-2">{work.category}</p>
-                <h4 className="text-xl font-serif font-bold text-foreground mb-2">{work.title}</h4>
-                <p className="text-foreground text-sm">{work.description}</p>
-              </div>
+                <h4 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-warm-primary transition-colors">{work.title}</h4>
+                <p className="text-foreground text-sm mb-3">{work.description}</p>
+                <div className="inline-block px-3 py-1 bg-warm-primary text-white rounded text-sm font-bold group-hover:bg-[#A0826D] transition-colors">
+                  查看作品 →
+                </div>
+              </a>
             ))}
           </div>
           <div className="mt-12 text-center">
-            <p className="text-foreground mb-4">更多作品請查看 Google Drive 作品集</p>
+            <p className="text-foreground mb-4 font-bold text-lg">上述作品均可點擊直接查看完整網站</p>
+            <p className="text-muted-foreground mb-6">更多設計稿與案例請查看 Google Drive 作品集</p>
             <a
               href="https://drive.google.com/drive/folders/1gfG9SFLGnk_dwdt5O3RFuxC4z6m789g1?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-3 bg-warm-primary text-white hover:bg-[#A0826D] transition-colors duration-300 rounded-lg"
+              className="inline-block px-6 py-3 bg-warm-primary text-white hover:bg-[#A0826D] transition-colors duration-300 rounded-lg font-bold"
             >
-              查看完整作品集
+              📁 Google Drive 作品集
             </a>
           </div>
         </div>

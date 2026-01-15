@@ -210,27 +210,44 @@ export interface Portfolio {
   link?: string;
 }
 
+export interface ProfileImage {
+  url: string;
+  alt: string;
+  caption: string;
+}
+
 export const portfolioWorks: Portfolio[] = [
   {
-    id: "chilips",
-    title: "CHILIPS 電子鎖品牌設計",
-    category: "品牌設計",
-    description: "電子鎖品牌的完整視覺識別系統設計，包括 Logo、網站設計、行銷物料。",
-    image: "/images/design-1.jpg",
-  },
-  {
-    id: "warm-home",
-    title: "溫ㄟ宅修 家修服務網站",
+    id: "skylark",
+    title: "Skylark 鳥瞰圖復刻平台",
     category: "網站設計 & PHP 程式",
-    description: "家修服務平台的網站設計與後端系統開發，包括預約系統、客戶管理、支付整合。",
-    image: "/images/design-2.jpg",
+    description: "台灣歷史地圖數位化平台，整合高解析度鳥瞰圖、互動地圖、文史資料庫。展現台灣不同時代的地理風貌，是文史保存的重要數位工程。",
+    image: "/images/design-1.jpg",
+    link: "https://skylark.tw/",
   },
   {
     id: "soyui-coffee",
-    title: "SOYUI COFFEE 品牌設計",
+    title: "SOYUI COFFEE 品牌官網",
+    category: "品牌設計 & 網站開發",
+    description: "咖啡品牌的完整視覺識別與官方網站，包括品牌故事、產品展示、線上訂購系統。設計融合現代簡約與溫暖人文的美學。",
+    image: "/images/design-2.jpg",
+    link: "https://suoyicoffee.com/",
+  },
+  {
+    id: "openlock",
+    title: "OpenLock 電子鎖品牌展示",
     category: "品牌設計",
-    description: "咖啡品牌的完整視覺識別設計，包括包裝設計、店面視覺、社群媒體素材。",
+    description: "智能電子鎖品牌的視覺識別與產品展示頁面。展現產品的技術特性與安全優勢，提升品牌專業形象。",
     image: "/images/design-3.jpg",
+    link: "https://bertwang.github.io/openlock/",
+  },
+  {
+    id: "home-repair",
+    title: "溫ㄟ宅修 家修服務平台",
+    category: "網站設計 & PHP 程式",
+    description: "家修服務平台的完整網站開發，包括服務預約系統、客戶管理後台、支付整合。提供便捷的家修服務媒合體驗。",
+    image: "/images/design-4.jpg",
+    link: "https://bertwang.github.io/home_repair/",
   },
 ];
 

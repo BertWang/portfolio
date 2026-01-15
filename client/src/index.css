@@ -152,6 +152,91 @@
 }
 
 @layer components {
+  /* 區域化 SEO 與動態互動樣式 */
+  
+  /* 平滑滾動 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 視差效果 */
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* 卡片懸停效果 */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 計數器動畫 */
+  @keyframes count-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .count-up {
+    animation: count-up 0.6s ease-out;
+  }
+
+  /* 脈衝動畫 */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(217, 119, 6, 0);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  /* 淡入淡出效果 */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    animation: fade-in-up 0.8s ease-out;
+  }
+
+  /* 區域化文案 SEO 優化 */
+  .regional-seo {
+    /* 隱藏但對搜尋引擎可見的文本 */
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .regional-seo span {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* 區域化 SEO 與動態互動樣式 - 結束 */
+
   /**
    * Custom container utility that centers content and adds responsive padding.
    */

@@ -9,8 +9,8 @@ export default function Home() {
   const regionContent = {
     tw: {
       since: 'SINCE 2004',
-      title: '視覺生活的溫度，設計品牌的靈魂',
-      subtitle: '18 年網頁設計與 PHP 開發經驗，為台灣在地品牌創造具有溫度的數位體驗',
+      title: '視覺生活的溫度，設計品牌的靈魂 - 台南網頁設計與 PHP 開發',
+      subtitle: '18 年台南網頁設計與 PHP 開發經驗。為台灣中小企業創造具有溫度的數位體驗。服務台南、高雄。',
       serviceArea: '服務地區',
       serviceAreaDesc: '台南、高雄、日本、馬來西亞',
       cta1: '立即咨詢',
@@ -51,8 +51,8 @@ export default function Home() {
     },
     jp: {
       since: 'SINCE 2004',
-      title: 'Infuse warmth into your brand through thoughtful design',
-      subtitle: '18 years of web design and PHP development experience, creating digital experiences with warmth for Taiwanese local brands',
+      title: 'あなたのブランドに温かみを注ぎ込む思慮深い設計',
+      subtitle: '18年のウェブデザインとPHP開発の経験。台湾の中小企業のための温かいデジタル体験を作成します。台南、高雄でサービス提供中。',
       serviceArea: 'Service Area',
       serviceAreaDesc: 'Tainan, Kaohsiung, Japan, Malaysia',
       cta1: 'Consult Now',
@@ -221,7 +221,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-gray-500 tracking-widest">{content.since}</span>
             </div>
 
-            {/* 大標題 */}
+            {/* 大標題 - SEO 優化 */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               {content.title}
             </h1>
@@ -283,9 +283,12 @@ export default function Home() {
                 <p className="text-lg font-semibold text-gray-700">{content.aboutIntro}</p>
               </div>
 
-              {/* 核心介紹 */}
+              {/* 核心介紹 - SEO 優化 */}
               <p className="text-gray-700 leading-relaxed text-lg">
                 {content.aboutDesc}
+              </p>
+              <p className="text-gray-700 leading-relaxed text-lg mt-4">
+                {activeRegion === 'tw' ? '專精於台南網頁設計、台南 PHP 開發、品牌設計與影像創作。無論您是台南中小企業、高雄新創，或日本、馬來西亞的品牌，我都能為您提供量身訂做的解決方案。' : activeRegion === 'jp' ? '台南のウェブデザイン、PHP開発、ブランドデザイン、ビデオ制作を専門としています。台湾の中小企業から日本、マレーシアのブランドまで、カスタマイズされたソリューションを提供します。' : 'Saya mengkhususkan diri dalam desain web Tainan, pengembangan PHP, desain merek, dan produksi video. Dari UKM Taiwan hingga merek Jepang dan Malaysia, saya menyediakan solusi yang disesuaikan.'}
               </p>
 
               {/* 資歷亮點 */}
@@ -305,7 +308,7 @@ export default function Home() {
       {/* 核心技能區域 */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">核心技能</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{activeRegion === 'tw' ? '核心技能 - 台南網頁設計與 PHP 開發' : activeRegion === 'jp' ? 'コアスキル - ウェブデザインとPHP開発' : 'Keterampilan Inti - Desain Web dan Pengembangan PHP'}</h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {content.skills.map((skill, idx) => (
@@ -332,7 +335,7 @@ export default function Home() {
       {/* 紀錄片展示區域 */}
       <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{content.documentaries}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{activeRegion === 'tw' ? '代表紀錄片 - 文化保存與品牌故事' : activeRegion === 'jp' ? '代表的なドキュメンタリー - 文化保存とブランドストーリー' : 'Dokumenter Perwakilan - Pelestarian Budaya dan Cerita Merek'}</h2>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* 南蚵一夢 */}
@@ -381,7 +384,7 @@ export default function Home() {
       {/* 作品集區域 */}
       <section id="services" className="py-16 md:py-24 bg-gray-50">
         <div className="container px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{content.projects}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{activeRegion === 'tw' ? '代表作品 - 台南網頁設計案例' : activeRegion === 'jp' ? '代表作品 - ウェブデザイン事例' : 'Karya Perwakilan - Studi Kasus Desain Web'}</h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* 天喜の記憶 */}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { ChevronDown, Phone, Mail, ExternalLink, Menu, X } from 'lucide-react';
+import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send } from 'lucide-react';
 
 export default function Home() {
   const [activeRegion, setActiveRegion] = useState('tw');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const regionContent = {
     tw: {
@@ -33,7 +34,16 @@ export default function Home() {
         { title: '文史保存', desc: '古蹟紀錄' }
       ],
       projects: '代表作品',
-      contact: '聯絡方式'
+      documentaries: '代表紀錄片',
+      contact: '合作咨詢',
+      consultationTitle: '開始合作',
+      consultationDesc: '分享您的想法，讓我們一起創造具有溫度的品牌故事',
+      consultationName: '您的名稱',
+      consultationEmail: '您的郵箱',
+      consultationService: '服務類型',
+      consultationMessage: '簡短說明您的需求',
+      consultationSubmit: '提交咨詢',
+      serviceOptions: ['網頁設計', 'PHP 開發', '品牌設計', '影像創作', 'SEO 優化', '其他']
     },
     jp: {
       since: 'SINCE 2004',
@@ -62,7 +72,16 @@ export default function Home() {
         { title: 'Heritage Preservation', desc: 'Historical Recording' }
       ],
       projects: 'Representative Projects',
-      contact: 'Contact'
+      documentaries: 'Representative Documentaries',
+      contact: 'Collaboration Inquiry',
+      consultationTitle: 'Start Collaborating',
+      consultationDesc: 'Share your ideas and let\'s create a brand story with warmth together',
+      consultationName: 'Your Name',
+      consultationEmail: 'Your Email',
+      consultationService: 'Service Type',
+      consultationMessage: 'Brief description of your needs',
+      consultationSubmit: 'Submit Inquiry',
+      serviceOptions: ['Web Design', 'PHP Development', 'Brand Design', 'Video Creation', 'SEO Optimization', 'Other']
     },
     my: {
       since: 'SEJAK 2004',
@@ -91,11 +110,26 @@ export default function Home() {
         { title: 'Pelestarian Warisan', desc: 'Perekaman Historis' }
       ],
       projects: 'Proyek Perwakilan',
-      contact: 'Kontak'
+      documentaries: 'Dokumenter Perwakilan',
+      contact: 'Konsultasi Kolaborasi',
+      consultationTitle: 'Mulai Berkolaborasi',
+      consultationDesc: 'Bagikan ide Anda dan mari kita ciptakan cerita merek yang hangat bersama',
+      consultationName: 'Nama Anda',
+      consultationEmail: 'Email Anda',
+      consultationService: 'Jenis Layanan',
+      consultationMessage: 'Deskripsi singkat tentang kebutuhan Anda',
+      consultationSubmit: 'Kirim Konsultasi',
+      serviceOptions: ['Desain Web', 'Pengembangan PHP', 'Desain Merek', 'Kreasi Video', 'Optimasi SEO', 'Lainnya']
     }
   };
 
   const content = regionContent[activeRegion as keyof typeof regionContent];
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    setTimeout(() => setFormSubmitted(false), 3000);
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -265,6 +299,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 紀錄片展示區域 */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-200">
+        <div className="container px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{content.documentaries}</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* 南蚵一夢 */}
+            <div className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+              <div className="aspect-video bg-gray-900 flex items-center justify-center">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="南蚵一夢"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="p-6 bg-white">
+                <h3 className="text-xl font-bold text-[#8B7355] mb-2">南蚵一夢</h3>
+                <p className="text-gray-600">台南文史紀錄 | 獲獎紀錄片</p>
+              </div>
+            </div>
+
+            {/* 雁難飛 */}
+            <div className="rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+              <div className="aspect-video bg-gray-900 flex items-center justify-center">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="雁難飛"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="p-6 bg-white">
+                <h3 className="text-xl font-bold text-[#8B7355] mb-2">雁難飛</h3>
+                <p className="text-gray-600">文化保存 | 獲獎紀錄片</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 作品集區域 */}
       <section id="services" className="py-16 md:py-24 bg-gray-50">
         <div className="container px-4">
@@ -354,36 +437,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 頁尾聯絡區域 */}
-      <section id="contact" className="py-16 md:py-24 bg-[#8B7355] text-white">
-        <div className="container px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">{content.contact}</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            <a
-              href="tel:0901404663"
-              className="flex flex-col items-center justify-center gap-3 p-8 bg-white/10 hover:bg-white/20 rounded-lg transition-all group"
-            >
-              <Phone size={32} className="group-hover:scale-110 transition-transform" />
-              <span className="font-semibold text-lg">立即來電</span>
-              <span className="text-white/80">0901-404-663</span>
-            </a>
-            <a
-              href="mailto:weblink1982@gmail.com"
-              className="flex flex-col items-center justify-center gap-3 p-8 bg-white/10 hover:bg-white/20 rounded-lg transition-all group"
-            >
-              <Mail size={32} className="group-hover:scale-110 transition-transform" />
-              <span className="font-semibold text-lg">傳照佐傳</span>
-              <span className="text-white/80">weblink1982@gmail.com</span>
-            </a>
-          </div>
+      {/* 合作咨詢區域 */}
+      <section id="contact" className="py-16 md:py-24 bg-gray-50">
+        <div className="container px-4">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{content.consultationTitle}</h2>
+              <p className="text-lg text-gray-600">{content.consultationDesc}</p>
+            </div>
 
-          <div className="mt-12 pt-8 border-t border-white/20 text-white/80 text-sm">
-            <p>© 2024 王純瑋 (Bert Wang) | 微波林克 (Weblink)</p>
-            <p className="mt-2">用溫度設計，為品牌注入靈魂</p>
+            <form onSubmit={handleFormSubmit} className="bg-white rounded-lg shadow-lg p-8 space-y-6">
+              {/* 名稱 */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationName}</label>
+                <input
+                  type="text"
+                  placeholder="請輸入您的名稱"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
+                  required
+                />
+              </div>
+
+              {/* 郵箱 */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationEmail}</label>
+                <input
+                  type="email"
+                  placeholder="請輸入您的郵箱"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
+                  required
+                />
+              </div>
+
+              {/* 服務類型 */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationService}</label>
+                <select
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
+                  required
+                >
+                  <option value="">-- 請選擇服務類型 --</option>
+                  {content.serviceOptions.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* 需求說明 */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationMessage}</label>
+                <textarea
+                  placeholder="請簡短說明您的需求..."
+                  rows={5}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent resize-none"
+                  required
+                />
+              </div>
+
+              {/* 提交按鈕 */}
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#8B7355] hover:bg-[#7A6347] text-white font-semibold rounded-lg transition-all"
+              >
+                <Send size={20} />
+                {content.consultationSubmit}
+              </button>
+
+              {/* 成功提示 */}
+              {formSubmitted && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center">
+                  ✓ 感謝您的咨詢，我們會盡快與您聯絡！
+                </div>
+              )}
+            </form>
+
+            {/* 直接聯絡方式 */}
+            <div className="mt-12 grid md:grid-cols-2 gap-6">
+              <a
+                href="tel:0901404663"
+                className="flex items-center gap-4 p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all"
+              >
+                <Phone size={32} className="text-[#8B7355] flex-shrink-0" />
+                <div>
+                  <p className="text-sm text-gray-600">立即來電</p>
+                  <p className="text-lg font-semibold text-gray-900">0901-404-663</p>
+                </div>
+              </a>
+              <a
+                href="mailto:weblink1982@gmail.com"
+                className="flex items-center gap-4 p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all"
+              >
+                <Mail size={32} className="text-[#8B7355] flex-shrink-0" />
+                <div>
+                  <p className="text-sm text-gray-600">傳照佐傳</p>
+                  <p className="text-lg font-semibold text-gray-900">weblink1982@gmail.com</p>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* 頁尾 */}
+      <footer className="py-12 bg-[#8B7355] text-white text-center">
+        <div className="container px-4">
+          <p>© 2024 王純瑋 (Bert Wang) | 微波林克 (Weblink)</p>
+          <p className="mt-2 text-white/80">用溫度設計，為品牌注入靈魂</p>
+        </div>
+      </footer>
     </div>
   );
 }

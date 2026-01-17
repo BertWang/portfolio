@@ -6,20 +6,28 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
 import { LoadingProvider } from "./contexts/LoadingContext";
 import { LoadingSpinner } from "./components/LoadingSpinner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLoading } from "./contexts/LoadingContext";
 
 function RouteChangeListener() {
   const [location] = useLocation();
   const { showLoading, hideLoading } = useLoading();
+  const [previousLocation, setPreviousLocation] = useState(location);
 
   useEffect(() => {
-    // Show loading when route changes
-    showLoading();
-    // Hide loading after a short delay to allow page to render
-    const timer = setTimeout(() => hideLoading(), 800);
-    return () => clearTimeout(timer);
-  }, [location, showLoading, hideLoading]);
+    // Only show loading if location actually changed (not on initial mount)
+    if (previousLocation !== location) {
+      console.log('[Loading] Route changed from', previousLocation, 'to', location);
+      showLoading();
+      // Hide loading after a delay to allow page to render
+      const timer = setTimeout(() => {
+        hideLoading();
+        console.log('[Loading] Animation hidden');
+      }, 1200);
+      setPreviousLocation(location);
+      return () => clearTimeout(timer);
+    }
+  }, [location, showLoading, hideLoading, previousLocation]);
 
   return null;
 }

@@ -1,8 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight } from 'lucide-react';
+import { useAuth } from '@/_core/hooks/useAuth';
+import { useLocation } from 'wouter';
+import { getLanguageFromPath, getLanguageCode, seoConfigs, updateSEOHead } from '@/lib/seoConfig';
 
 export default function Home() {
-  const [activeRegion, setActiveRegion] = useState('tw');
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+  const [location] = useLocation();
+  const language = getLanguageFromPath(location);
+  const languageCode = getLanguageCode(language);
+
+  // Update SEO on mount and when language changes
+  useEffect(() => {
+    const seoConfig = seoConfigs[language];
+    if (seoConfig) {
+      updateSEOHead(seoConfig, languageCode);
+    }
+  }, [language, languageCode]);
+
+  const [activeRegion, setActiveRegion] = useState(language);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -150,6 +168,19 @@ export default function Home() {
     }
   };
 
+  // Handle region change
+  const handleRegionChange = (region: string) => {
+    setActiveRegion(region);
+    // Update URL path
+    if (region === 'tw') {
+      window.location.href = '/tw/';
+    } else if (region === 'jp') {
+      window.location.href = '/jp/';
+    } else if (region === 'my') {
+      window.location.href = '/my/';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* 導航欄 - 簡潔專業風格 */}
@@ -165,7 +196,7 @@ export default function Home() {
             {['tw', 'jp', 'my'].map((region) => (
               <button
                 key={region}
-                onClick={() => setActiveRegion(region)}
+                onClick={() => handleRegionChange(region)}
                 className={`px-4 py-2 text-sm font-medium transition-all ${
                   activeRegion === region
                     ? 'bg-[#8B7355] text-white rounded'
@@ -194,7 +225,7 @@ export default function Home() {
                 <button
                   key={region}
                   onClick={() => {
-                    setActiveRegion(region);
+                    handleRegionChange(region);
                     setMobileMenuOpen(false);
                   }}
                   className={`px-4 py-2 text-sm font-medium text-left transition-all ${

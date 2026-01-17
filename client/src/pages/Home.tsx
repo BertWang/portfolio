@@ -3,6 +3,7 @@ import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight } fro
 import { useAuth } from '@/_core/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { getLanguageFromPath, getLanguageCode, seoConfigs, updateSEOHead } from '@/lib/seoConfig';
+import { useLoading } from '@/contexts/LoadingContext';
 
 export default function Home() {
   // The userAuth hooks provides authentication state
@@ -12,13 +13,17 @@ export default function Home() {
   const language = getLanguageFromPath(location);
   const languageCode = getLanguageCode(language);
 
+  const { hideLoading } = useLoading();
+
   // Update SEO on mount and when language changes
   useEffect(() => {
     const seoConfig = seoConfigs[language];
     if (seoConfig) {
       updateSEOHead(seoConfig, languageCode);
     }
-  }, [language, languageCode]);
+    // Hide loading when page content is ready
+    hideLoading();
+  }, [language, languageCode, hideLoading]);
 
   const [activeRegion, setActiveRegion] = useState(language);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -159,6 +164,8 @@ export default function Home() {
     e.preventDefault();
     setFormSubmitted(true);
     setTimeout(() => setFormSubmitted(false), 3000);
+    // Show loading briefly during form submission
+    // In a real app, this would be triggered by actual API calls
   };
 
   const scrollToContact = () => {

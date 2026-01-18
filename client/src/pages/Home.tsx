@@ -487,7 +487,7 @@ export default function Home() {
 
             {/* 溫ㄟ宅修 */}
             <a
-              href="https://bertwang.github.io/wenwei/"
+              href="https://tainanfix.de5.net/"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"

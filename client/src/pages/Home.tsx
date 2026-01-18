@@ -43,7 +43,7 @@ export default function Home() {
       aboutDesc: '18 年來，我透過網頁設計、PHP 開發、影像創作與文史保存，為台灣的品牌與社區注入溫度。不只是製作網站，而是透過設計保存品牌故事、文化記憶，與社會價值。',
       highlights: [
         '18 年網頁設計與 PHP 開發經驗',
-        '4 個代表作品：天喜の記憶、SOYUI COFFEE、OpenLock、溫ㄟ宅修',
+        '4 個代表作品：天喜の記憶、所以咖啡、強匠鎖店、溫ㄟ宅修',
         '2 部獲獎紀錄片：《南蚵一夢》、《雁難飛》',
         '古蹟保存計畫參與者（赤嵌樓、祀典武廟、大天后宮）',
         '朱婕老師阿育吠陀筆記數位化與網站架設'
@@ -85,7 +85,7 @@ export default function Home() {
       aboutDesc: 'Over 18 years, I have infused warmth into Taiwanese brands and communities through web design, PHP development, video creation, and cultural heritage preservation. Not just building websites, but preserving brand stories, cultural memories, and social values through design.',
       highlights: [
         '18 years of web design and PHP development experience',
-        '4 representative projects: Skylark, SOYUI COFFEE, OpenLock, WEN-A',
+        '4 representative projects: Skylark, So Cafe, Strong Craftsman Lock Shop, WEN-A',
         '2 award-winning documentaries: "Oyster Dream" and "Geese Cannot Fly"',
         'Participant in heritage preservation projects (Confucius Temple, Martial Temple, Mazu Temple)',
         'Digitization and website development for Ayurveda notes'
@@ -127,7 +127,7 @@ export default function Home() {
       aboutDesc: 'Selama 18 tahun, saya telah menyuntikkan kehangatan ke dalam merek dan komunitas lokal melalui desain web, pengembangan PHP, kreasi video, dan pelestarian warisan budaya. Bukan hanya membangun situs web, tetapi melestarikan cerita merek, memori budaya, dan nilai sosial melalui desain.',
       highlights: [
         '18 tahun pengalaman desain web dan pengembangan PHP',
-        '4 proyek perwakilan: Skylark, SOYUI COFFEE, OpenLock, WEN-A',
+        '4 proyek perwakilan: Skylark, So Cafe, Strong Craftsman Lock Shop, WEN-A',
         '2 dokumenter pemenang penghargaan: "Oyster Dream" dan "Geese Cannot Fly"',
         'Peserta dalam proyek pelestarian warisan (Kuil Confucius, Kuil Militer, Kuil Mazu)',
         'Digitalisasi dan pengembangan situs web untuk catatan Ayurveda'
@@ -445,18 +445,18 @@ export default function Home() {
               </div>
             </a>
 
-            {/* SOYUI COFFEE */}
+            {/* 所以咖啡 */}
             <a
               href="https://suoyicoffee.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="aspect-video bg-gradient-to-br from-[#8B4513] to-[#D2691E] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">SOYUI COFFEE</span>
+              <div className="aspect-video bg-gradient-to-br from-[#8B7355] to-[#6B5344] flex items-center justify-center">
+                <span className="text-white text-2xl font-bold">所以咖啡</span>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-[#8B7355] mb-2">SOYUI COFFEE</h3>
+                <h3 className="text-xl font-bold text-[#8B7355] mb-2">所以咖啡</h3>
                 <p className="text-gray-600 mb-4">精品咖啡品牌 | 職人精神展現</p>
                 <div className="flex items-center text-[#8B7355] group-hover:gap-2 transition-all">
                   <span>查看完整網站</span>
@@ -465,7 +465,7 @@ export default function Home() {
               </div>
             </a>
 
-            {/* OpenLock */}
+            {/* 強匠鎖店 */}
             <a
               href="https://bertwang.github.io/openlock/"
               target="_blank"
@@ -473,10 +473,10 @@ export default function Home() {
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
               <div className="aspect-video bg-gradient-to-br from-[#DC143C] to-[#FF6347] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">OpenLock</span>
+                <span className="text-white text-2xl font-bold">強匠鎖店</span>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-[#8B7355] mb-2">OpenLock 強匠鎖店</h3>
+                <h3 className="text-xl font-bold text-[#8B7355] mb-2">強匠鎖店</h3>
                 <p className="text-gray-600 mb-4">24H 緊急開鎖 | 信任承諾</p>
                 <div className="flex items-center text-[#8B7355] group-hover:gap-2 transition-all">
                   <span>查看完整網站</span>

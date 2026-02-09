@@ -306,7 +306,7 @@ export default function Home() {
             <div className="flex justify-center md:justify-start order-2 md:order-1">
               <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                 <img
-                  src="/images/IMG_5972.jpeg"
+                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663032489249/coDLqCbRAJeBjXhk.jpeg"
                   alt="王純瑋"
                   className="w-full h-full object-cover"
                 />
@@ -467,7 +467,7 @@ export default function Home() {
 
             {/* 強匠鎖店 */}
             <a
-              href="https://bertwang.github.io/openlock/"
+              href="https://openlock.tw/"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"

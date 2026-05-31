@@ -70,7 +70,20 @@ export default function Home() {
       serviceOptions: ['網頁設計', 'PHP 開發', '品牌設計', '影像創作', 'SEO 優化', '其他'],
       skillsCTA: '開始您的項目',
       contactCall: '立即來電',
-      contactEmail: 'EMAIL咨詢'
+      contactEmail: 'EMAIL咨詢',
+      civicTitle: '用設計與影像，為台灣的故事發聲',
+      civicSubtitle: '不只是製作網站，更是透過紀錄片、影像創作與公民參與，守護文化記憶、實踐社會責任',
+      civicMainText: '18 年來，我用代碼和設計為品牌創造溫度。但我也相信，設計的力量不只在於商業，更在於能否為社會議題發聲。',
+      civicMainText2: '從 318 學運到青島東的護國大遶述，從飛雁新村的都市更新到南山公墓的文化保存，我用影像記錄著台灣被遺忘的故事。每一部紀錄片、每一支影片、每一次直播，都是我對這片土地的承諾——用溫度設計，用影像見證，用行動改變。',
+      civicDocumentaries: '🎬 獲獎紀錄片 - 用影像說故事',
+      civicHeritage: '🏛️ 文化保存 - 守護台灣的記憶',
+      civicHeritageSub: '我不只是設計師，更是文化的守護者。參與赤嵌樓、祀典武廟、大天后宮等古蹟保存計畫，守護台南南山公墓、高雄覆鼎金公墓，搶救 1936 年的台南舊魚市場。每一個行動，都是為了讓下一代知道：我們來自哪裡，我們珍視什麼。',
+      civicMovement: '🎥 社會運動 - 用影像見證時代',
+      civicMovementSub: '318 學運、青島東護國大遶述、小草行動——我用影像記錄著這些時代的聲音。與朱康老師合作製作支持影片，直播公民參與的每一刻，因為我相信：每一個聲音都值得被看見，每一次行動都值得被記錄。',
+      civicCreation: '✨ 影像創作 - 在喧鬧世界裡尋找細微溫度',
+      civicCreationSub: '微波林克不只是網頁設計師，更是一個影片創作者。透過專業的剪輯、音樂搭配、現場直播，將社會議題、文化故事、公民行動轉化為可被感受的影像作品。因為我相信，設計和影像的力量，能夠改變人心，進而改變世界。',
+      civicCTA: '您的品牌也關心社會責任嗎？',
+      civicCTADesc: '如果您的組織也想透過設計和影像為台灣發聲，歡迎與我合作。我不只能為您設計網站，更能幫您用故事、用影像、用溫度連結社會。'
     },
     jp: {
       since: 'SINCE 2004',
@@ -112,7 +125,20 @@ export default function Home() {
       serviceOptions: ['Web Design', 'PHP Development', 'Brand Design', 'Video Creation', 'SEO Optimization', 'Other'],
       skillsCTA: 'Start Your Project',
       contactCall: 'Call Now',
-      contactEmail: 'Email Inquiry'
+      contactEmail: 'Email Inquiry',
+      civicTitle: 'デザインと映像で、台湾の物語を発信する',
+      civicSubtitle: 'ウェブサイト制作だけでなく、ドキュメンタリー、映像制作、市民参加を通じて、文化的記憶を守り、社会的責任を実践する',
+      civicMainText: '18 年間、私はコードとデザインでブランドに温かみを与えてきました。しかし、デザインの力は商業だけではなく、社会的課題に声を上げることができるはずです。',
+      civicMainText2: '318 学運から青島東の護国大遶述まで、飛雁新村の都市更新から南山公墓の文化保存まで、私は映像で台湾の忘れられた物語を記録しています。すべてのドキュメンタリー、すべてのビデオ、すべてのライブ配信は、この土地への私の約束です——温かみのあるデザイン、映像での目撃、行動による変化。',
+      civicDocumentaries: '🎬 受賞ドキュメンタリー - 映像で物語を語る',
+      civicHeritage: '🏛️ 文化保存 - 台湾の記憶を守る',
+      civicHeritageSub: '私はデザイナーであるだけでなく、文化の守護者です。赤嵌楼、祀典武廟、大天后宮などの古跡保存計画に参加し、台南南山公墓、高雄覆鼎金公墓を守り、1936 年の台南旧魚市場を救出します。すべての行動は、次の世代に知らせるためです：私たちはどこから来たのか、何を大切にしているのか。',
+      civicMovement: '🎥 社会運動 - 映像で時代を目撃する',
+      civicMovementSub: '318 学運、青島東護国大遶述、小草行動——私は映像でこれらの時代の声を記録しています。朱康先生と協力して支援ビデオを制作し、市民参加のすべての瞬間をライブ配信します。なぜなら、私は信じています：すべての声は見られるべきであり、すべての行動は記録されるべきです。',
+      civicCreation: '✨ 映像制作 - 喧噪の世界で細かい温かみを探す',
+      civicCreationSub: '微波林克はウェブデザイナーであるだけでなく、映像クリエイターでもあります。プロフェッショナルな編集、音楽マッチング、ライブ配信を通じて、社会的課題、文化的物語、市民参加を感じられる映像作品に変換します。デザインと映像の力が人心を変え、ひいては世界を変えることができると信じているからです。',
+      civicCTA: 'あなたのブランドも社会的責任を気にしていますか？',
+      civicCTADesc: 'あなたの組織がデザインと映像を通じて台湾のために声を上げたいのであれば、私と協力することをお勧めします。ウェブサイトの設計だけでなく、物語、映像、温かみを通じて社会と繋がるお手伝いができます。'
     },
     my: {
       since: 'SEJAK 2004',
@@ -154,7 +180,20 @@ export default function Home() {
       serviceOptions: ['Desain Web', 'Pengembangan PHP', 'Desain Merek', 'Kreasi Video', 'Optimasi SEO', 'Lainnya'],
       skillsCTA: 'Mulai Proyek Anda',
       contactCall: 'Hubungi Sekarang',
-      contactEmail: 'Konsultasi Email'
+      contactEmail: 'Konsultasi Email',
+      civicTitle: 'Design and Video: Giving Voice to Malaysia\'s Stories',
+      civicSubtitle: 'Beyond web design, I preserve cultural memory and practice social responsibility through documentaries, video production, and civic participation.',
+      civicMainText: 'For 18 years, I\'ve used code and design to bring warmth to brands. But I believe design\'s power extends beyond commerce—it can amplify social voices and drive change.',
+      civicMainText2: 'From civic movements to cultural preservation, from urban renewal to heritage protection, I document Malaysia\'s forgotten stories through film and video. Every documentary, every video, every live broadcast is my commitment to this land——designing with warmth, witnessing through images, creating change through action.',
+      civicDocumentaries: '🎬 Award-Winning Documentaries - Storytelling Through Video',
+      civicHeritage: '🏛️ Cultural Preservation - Protecting Our Heritage',
+      civicHeritageSub: 'I\'m not just a designer—I\'m a guardian of culture. I participate in heritage preservation projects, protect historic cemeteries, and rescue forgotten architectural treasures. Because we must remember where we come from and what we cherish.',
+      civicMovement: '🎥 Civic Engagement - Witnessing Our Times',
+      civicMovementSub: 'From social movements to community actions, I document these moments through video. With professional editing, music composition, and live streaming, I transform social issues into powerful visual narratives. Because every voice deserves to be heard, every action deserves to be recorded.',
+      civicCreation: '✨ Video Production - Finding Warmth in a Noisy World',
+      civicCreationSub: 'Weblink isn\'t just a design studio—it\'s a creative video production house. Through professional editing, music matching, and live documentation, I transform social stories into emotionally resonant visual works. Because I believe design and video can change hearts, and changed hearts can change the world.',
+      civicCTA: 'Does your organization also care about social responsibility?',
+      civicCTADesc: 'If you want to amplify your brand\'s voice through design and video, let\'s collaborate. I can design your website and help you connect with your community through authentic storytelling, compelling visuals, and genuine warmth.'
     }
   };
 
@@ -415,6 +454,70 @@ export default function Home() {
                 <p className="text-gray-600">文化保存 | 獲獎紀錄片</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 公民參與區塊 */}
+      <section id="civic" className="py-16 md:py-24 bg-white">
+        <div className="container px-4">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{content.civicTitle}</h2>
+            <p className="text-lg text-gray-600 mb-8">{content.civicSubtitle}</p>
+            <p className="text-gray-700 mb-6 leading-relaxed">{content.civicMainText}</p>
+            <p className="text-gray-700 leading-relaxed">{content.civicMainText2}</p>
+          </div>
+
+          {/* 公民參與項目卡片 */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* 獲獎紀錄片 */}
+            <div className="bg-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-4">{content.civicDocumentaries.split(' - ')[0]}</div>
+              <h3 className="text-2xl font-bold text-[#8B7355] mb-4">{content.civicDocumentaries.split(' - ')[1]}</h3>
+              <p className="text-gray-600 mb-6">《南趣一夠》2017 原鄉踏查紀錄片競賽環境生態特別獎 | 《雁難飛》2014 神腦紀錄片競賽社會組佐作</p>
+              <a href="https://www.youtube.com/watch?v=DYvdqj_Rx9U" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-[#8B7355] font-semibold hover:underline">
+                查看紀錄片 <ArrowRight className="ml-2 w-4 h-4" />
+              </a>
+            </div>
+
+            {/* 文化保存 */}
+            <div className="bg-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-4">{content.civicHeritage.split(' - ')[0]}</div>
+              <h3 className="text-2xl font-bold text-[#8B7355] mb-4">{content.civicHeritage.split(' - ')[1]}</h3>
+              <p className="text-gray-600">{content.civicHeritageSub}</p>
+            </div>
+
+            {/* 社會運動 */}
+            <div className="bg-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-4">{content.civicMovement.split(' - ')[0]}</div>
+              <h3 className="text-2xl font-bold text-[#8B7355] mb-4">{content.civicMovement.split(' - ')[1]}</h3>
+              <p className="text-gray-600">{content.civicMovementSub}</p>
+            </div>
+
+            {/* 影像創作 */}
+            <div className="bg-gray-50 rounded-lg p-8 hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-4">{content.civicCreation.split(' - ')[0]}</div>
+              <h3 className="text-2xl font-bold text-[#8B7355] mb-4">{content.civicCreation.split(' - ')[1]}</h3>
+              <p className="text-gray-600">{content.civicCreationSub}</p>
+            </div>
+          </div>
+
+          {/* CTA 區域 */}
+          <div className="bg-gradient-to-r from-[#8B7355] to-[#6B5344] rounded-lg p-12 text-white text-center">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">{content.civicCTA}</h3>
+            <p className="text-lg mb-8 opacity-90">{content.civicCTADesc}</p>
+            <button
+              onClick={() => {
+                const element = document.getElementById('consultation');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  setFormSubmitted(false);
+                }
+              }}
+              className="bg-white text-[#8B7355] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
+            >
+              {content.civicCTA} <ArrowRight className="ml-2 w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>

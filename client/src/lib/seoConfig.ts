@@ -21,13 +21,26 @@ export interface SEOConfig {
       name: string;
       areaServed: string[];
       description: string;
+      address?: string;
+      telephone?: string;
+      email?: string;
+      sameAs?: string[];
     };
     person: {
       name: string;
       jobTitle: string;
       description: string;
+      alternateName?: string;
+      sameAs?: string[];
+    };
+    service?: {
+      name: string;
+      description: string;
+      provider: string;
     };
   };
+  author?: string;
+  robotsDirective?: string;
 }
 
 const baseUrl = 'https://bertfolio-vncqhm2r.manus.space';
@@ -36,16 +49,16 @@ const ownerImage = `${baseUrl}/images/IMG_5972.jpeg`;
 
 export const seoConfigs: Record<string, SEOConfig> = {
   tw: {
-    title: '台南網頁設計 | PHP 開發 | 王純瑋 - 微波林克',
-    description: '18 年台南網頁設計與 PHP 開發經驗。為台灣中小企業創造具有溫度的數位體驗。服務台南、高雄。立即咨詢。',
-    keywords: '台南網頁設計, 台南 PHP 開發, 網頁設計, 品牌設計, SEO 優化, 影像創作, 微波林克',
+    title: '台南網頁設計 | 視覺設計師王純瑋 | 文化保存 × 品牌設計',
+    description: '王純瑋是台南視覺設計師，18年網頁設計與PHP開發經驗。結合文化保存與品牌設計，為台南中小企業創造有溫度的數位體驗。服務台南、高雄、日本、馬來西亞。立即咨詢。',
+    keywords: '台南網頁設計, 台南視覺設計師, 台南品牌設計, 台南PHP開發, 台南文創保存, 王純瑋, 微波林克, 網頁設計公司, 台南設計師, 台南網站製作',
     canonical: `${baseUrl}/tw/`,
-    ogTitle: '台南網頁設計 | PHP 開發 | 王純瑋 - 微波林克',
-    ogDescription: '18 年台南網頁設計與 PHP 開發經驗。為台灣中小企業創造具有溫度的數位體驗。',
+    ogTitle: '台南網頁設計 | 視覺設計師王純瑋 | 文化保存 × 品牌設計',
+    ogDescription: '王純瑋結合文化保存與品牌設計，為台南中小企業創造有溫度的數位體驗。18年網頁設計與PHP開發經驗。',
     ogUrl: `${baseUrl}/tw/`,
     ogImage: ownerImage,
-    twitterTitle: '台南網頁設計 | PHP 開發 | 王純瑋',
-    twitterDescription: '18 年台南網頁設計與 PHP 開發經驗',
+    twitterTitle: '台南網頁設計 | 視覺設計師王純瑋',
+    twitterDescription: '結合文化保存與品牌設計的台南視覺設計師。18年網頁設計與PHP開發經驗。',
     twitterImage: ownerImage,
     hreflangs: [
       { lang: 'zh-TW', href: `${baseUrl}/tw/` },
@@ -57,26 +70,39 @@ export const seoConfigs: Record<string, SEOConfig> = {
       localBusiness: {
         name: `${ownerName} - 微波林克`,
         areaServed: ['台南市', '高雄市'],
-        description: '18 年台南網頁設計與 PHP 開發經驗，為台灣中小企業創造具有溫度的數位體驗'
+        description: '台南視覺設計師，結合文化保存與品牌設計。18年網頁設計與PHP開發經驗，為台灣中小企業創造有溫度的數位體驗。',
+        address: 'Tainan, Taiwan',
+        telephone: '0901-404-663',
+        email: 'weblink1982@gmail.com',
+        sameAs: ['https://github.com/bertwang', 'https://www.youtube.com/@weblink0912']
       },
       person: {
         name: ownerName,
-        jobTitle: '網頁設計師 / PHP 開發者',
-        description: '18 年網頁設計與 PHP 開發經驗，專精於台南網頁設計與品牌設計'
+        alternateName: 'Bert Wang',
+        jobTitle: '視覺設計師 / 網頁設計師 / PHP 開發者 / 紀錄片導演 / 文化保存者',
+        description: '台南視覺設計師，18年網頁設計與PHP開發經驗。結合文化保存與品牌設計，為台灣品牌與社區注入溫度。',
+        sameAs: ['https://github.com/bertwang']
+      },
+      service: {
+        name: '台南網頁設計與品牌設計服務',
+        description: '為台南中小企業提供網頁設計、PHP開發、品牌設計、影像製作等服務',
+        provider: '王純瑋 - 微波林克'
       }
-    }
+    },
+    author: '王純瑋',
+    robotsDirective: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
   },
   jp: {
-    title: 'ウェブデザイン | PHP開発 | 王純瑋 - Weblink',
-    description: '18年のウェブデザインとPHP開発の経験。台湾の中小企業のための温かいデジタル体験を作成します。日本全国でサービス提供中。',
-    keywords: 'ウェブデザイン, PHP開発, ブランドデザイン, ビデオ制作, SEO最適化, Weblink',
+    title: 'ウェブデザイン | ビジュアルデザイナー王純瑋 | 文化保存 × ブランドデザイン',
+    description: 'ビジュアルデザイナー王純瑋は、18年のウェブデザインとPHP開発の経験を持つ台湾のデザイナーです。文化保存とブランドデザインを組み合わせた温かいデジタル体験を提供します。日本全国でサービス提供中。',
+    keywords: 'ウェブデザイン, PHP開発, ビジュアルデザイナー, ブランドデザイン, ビデオ制作, SEO最適化, 文化保存, Weblink, 王純瑋',
     canonical: `${baseUrl}/jp/`,
-    ogTitle: 'ウェブデザイン | PHP開発 | 王純瑋 - Weblink',
-    ogDescription: '18年のウェブデザインとPHP開発の経験。台湾の中小企業のための温かいデジタル体験を作成します。',
+    ogTitle: 'ウェブデザイン | ビジュアルデザイナー王純瑋 | 文化保存 × ブランドデザイン',
+    ogDescription: 'ビジュアルデザイナー王純瑋が、文化保存とブランドデザインを組み合わせた温かいデジタル体験を提供します。18年のウェブデザイン経験。',
     ogUrl: `${baseUrl}/jp/`,
     ogImage: ownerImage,
-    twitterTitle: 'ウェブデザイン | PHP開発 | 王純瑋',
-    twitterDescription: '18年のウェブデザインとPHP開発の経験',
+    twitterTitle: 'ウェブデザイン | ビジュアルデザイナー王純瑋',
+    twitterDescription: '文化保存とブランドデザインを組み合わせたビジュアルデザイナー。18年のウェブデザイン経験。',
     twitterImage: ownerImage,
     hreflangs: [
       { lang: 'ja', href: `${baseUrl}/jp/` },
@@ -88,26 +114,39 @@ export const seoConfigs: Record<string, SEOConfig> = {
       localBusiness: {
         name: `${ownerName} - Weblink`,
         areaServed: ['日本'],
-        description: '18年のウェブデザインとPHP開発の経験、日本全国でサービス提供中'
+        description: 'ビジュアルデザイナー王純瑋は、文化保存とブランドデザインを組み合わせた温かいデジタル体験を提供します。18年のウェブデザイン経験。',
+        address: 'Taiwan',
+        telephone: '0901-404-663',
+        email: 'weblink1982@gmail.com',
+        sameAs: ['https://github.com/bertwang', 'https://www.youtube.com/@weblink0912']
       },
       person: {
         name: ownerName,
-        jobTitle: 'ウェブデザイナー / PHP開発者',
-        description: '18年のウェブデザインとPHP開発の経験、日本のブランド向けカスタムソリューション提供'
+        alternateName: 'Bert Wang',
+        jobTitle: 'ビジュアルデザイナー / ウェブデザイナー / PHP開発者 / ドキュメンタリー監督 / 文化保存者',
+        description: 'ビジュアルデザイナー王純瑋は、18年のウェブデザインとPHP開発の経験を持つ。文化保存とブランドデザインを組み合わせた温かいデジタル体験を提供。',
+        sameAs: ['https://github.com/bertwang']
+      },
+      service: {
+        name: 'ウェブデザイン・ブランドデザインサービス',
+        description: '日本のブランド向けにウェブデザイン、PHP開発、ブランドデザイン、ビデオ制作などのサービスを提供',
+        provider: '王純瑋 - Weblink'
       }
-    }
+    },
+    author: '王純瑋',
+    robotsDirective: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
   },
   my: {
-    title: 'Desain Web | Pengembangan PHP | Bert Wang - Weblink',
-    description: '18 tahun pengalaman desain web dan pengembangan PHP. Menciptakan pengalaman digital yang hangat untuk merek lokal Malaysia. Layanan di seluruh Malaysia.',
-    keywords: 'Desain Web, Pengembangan PHP, Desain Merek, Produksi Video, Optimasi SEO, Weblink',
+    title: 'Desain Web | Desainer Visual Bert Wang | Pelestarian Budaya × Desain Merek',
+    description: 'Bert Wang adalah desainer visual dengan 18 tahun pengalaman desain web dan pengembangan PHP. Menggabungkan pelestarian budaya dengan desain merek untuk menciptakan pengalaman digital yang hangat. Layanan di seluruh Malaysia.',
+    keywords: 'Desain Web, Desainer Visual, Desain Merek, Pengembangan PHP, Produksi Video, Optimasi SEO, Pelestarian Budaya, Weblink, Bert Wang, Agensi Desain Web',
     canonical: `${baseUrl}/my/`,
-    ogTitle: 'Desain Web | Pengembangan PHP | Bert Wang - Weblink',
-    ogDescription: '18 tahun pengalaman desain web dan pengembangan PHP. Menciptakan pengalaman digital yang hangat untuk merek lokal Malaysia.',
+    ogTitle: 'Desain Web | Desainer Visual Bert Wang | Pelestarian Budaya × Desain Merek',
+    ogDescription: 'Desainer visual Bert Wang menggabungkan pelestarian budaya dengan desain merek untuk menciptakan pengalaman digital yang hangat. 18 tahun pengalaman desain web.',
     ogUrl: `${baseUrl}/my/`,
     ogImage: ownerImage,
-    twitterTitle: 'Desain Web | Pengembangan PHP | Bert Wang',
-    twitterDescription: '18 tahun pengalaman desain web dan pengembangan PHP',
+    twitterTitle: 'Desain Web | Desainer Visual Bert Wang',
+    twitterDescription: 'Desainer visual yang menggabungkan pelestarian budaya dengan desain merek. 18 tahun pengalaman desain web.',
     twitterImage: ownerImage,
     hreflangs: [
       { lang: 'ms', href: `${baseUrl}/my/` },
@@ -119,14 +158,27 @@ export const seoConfigs: Record<string, SEOConfig> = {
       localBusiness: {
         name: `Bert Wang - Weblink`,
         areaServed: ['Malaysia'],
-        description: '18 tahun pengalaman desain web dan pengembangan PHP, layanan di seluruh Malaysia'
+        description: 'Desainer visual Bert Wang menggabungkan pelestarian budaya dengan desain merek. 18 tahun pengalaman desain web dan pengembangan PHP.',
+        address: 'Taiwan',
+        telephone: '0901-404-663',
+        email: 'weblink1982@gmail.com',
+        sameAs: ['https://github.com/bertwang', 'https://www.youtube.com/@weblink0912']
       },
       person: {
         name: ownerName,
-        jobTitle: 'Desainer Web / Pengembang PHP',
-        description: '18 tahun pengalaman desain web dan pengembangan PHP, menyediakan solusi khusus untuk merek Malaysia'
+        alternateName: 'Bert Wang',
+        jobTitle: 'Desainer Visual / Desainer Web / Pengembang PHP / Sutradara Dokumenter / Pelestari Budaya',
+        description: 'Desainer visual Bert Wang dengan 18 tahun pengalaman desain web dan pengembangan PHP. Menggabungkan pelestarian budaya dengan desain merek untuk menciptakan pengalaman digital yang hangat.',
+        sameAs: ['https://github.com/bertwang']
+      },
+      service: {
+        name: 'Layanan Desain Web dan Desain Merek',
+        description: 'Menyediakan layanan desain web, pengembangan PHP, desain merek, dan produksi video untuk merek Malaysia',
+        provider: 'Bert Wang - Weblink'
       }
-    }
+    },
+    author: 'Bert Wang',
+    robotsDirective: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
   }
 };
 

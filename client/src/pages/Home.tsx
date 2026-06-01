@@ -83,7 +83,45 @@ export default function Home() {
       civicCreation: '✨ 影像創作 - 在喧鬧世界裡尋找細微溫度',
       civicCreationSub: '微波林克不只是網頁設計師，更是一個影片創作者。透過專業的剪輯、音樂搭配、現場直播，將社會議題、文化故事、公民行動轉化為可被感受的影像作品。因為我相信，設計和影像的力量，能夠改變人心，進而改變世界。',
       civicCTA: '您的品牌也關心社會責任嗎？',
-      civicCTADesc: '如果您的組織也想透過設計和影像為台灣發聲，歡迎與我合作。我不只能為您設計網站，更能幫您用故事、用影像、用溫度連結社會。'
+      civicCTADesc: '如果您的組織也想透過設計和影像為台灣發聲，歡迎與我合作。我不只能為您設計網站，更能幫您用故事、用影像、用溫度連結社會。',
+      whyChooseTitle: '為什麼選擇王純瑋？',
+      whyChoose: [
+        {
+          title: '台南在地，深度理解',
+          desc: '我是台南人，深耕台南 18 年。我不只是設計師，更是台南文化的守護者。我了解台南中小企業的需求，知道如何用設計幫助您在競爭激烈的市場中脫穎而出。'
+        },
+        {
+          title: '文化保存 × 視覺設計 = 獨特價值',
+          desc: '我不只能為您設計網站，更能幫您用故事、用影像、用溫度連結客戶。我的作品不是冷冰冰的代碼，而是承載著品牌靈魂的設計。'
+        },
+        {
+          title: '紀錄片 × 品牌故事 = 深度連結',
+          desc: '我用紀錄片的手法製作品牌影像。每一支影片、每一個畫面，都是為了讓您的客戶感受到品牌的溫度。這不是普通的網頁設計，這是一次完整的品牌體驗設計。'
+        },
+        {
+          title: '社會責任 × 商業成功 = 永續經營',
+          desc: '我相信設計的力量不只在於商業，更在於能否為社會議題發聲。選擇與我合作，您不只是在建立一個網站，更是在參與一個有溫度、有責任感的品牌故事。'
+        }
+      ],
+      faqTitle: '常見問題',
+      faqItems: [
+        {
+          q: '王純瑋與其他網頁設計師的差別在哪裡？',
+          a: '最大的差別在於「溫度」。大多數設計師只是製作網站，但我會幫您用故事、用影像、用設計來傳達品牌的靈魂。我不只是技術人員，更是您品牌故事的共同創造者。'
+        },
+        {
+          q: '為什麼要選擇台南在地的設計師？',
+          a: '台南在地的設計師更了解台南市場、台南文化、台南消費者的需求。我 18 年來深耕台南，知道如何用設計幫助台南企業在全國甚至國際市場上競爭。'
+        },
+        {
+          q: '您的設計風格是什麼？',
+          a: '我的設計風格是「有溫度的專業」。我不追求炫彩的視覺效果，而是追求能夠傳達品牌價值、連結客戶情感的設計。每一個色彩、每一個排版、每一個互動，都有其目的。'
+        },
+        {
+          q: '您有提供 SEO 優化服務嗎？',
+          a: '是的。我不只設計網站，更會確保您的網站在搜尋引擎上有良好的排名。我會針對「台南網頁設計」、「台南 PHP 開發」等本地關鍵詞進行優化。'
+        }
+      ]
     },
     jp: {
       since: 'SINCE 2004',
@@ -138,7 +176,45 @@ export default function Home() {
       civicCreation: '✨ 映像制作 - 喧噪の世界で細かい温かみを探す',
       civicCreationSub: '微波林克はウェブデザイナーであるだけでなく、映像クリエイターでもあります。プロフェッショナルな編集、音楽マッチング、ライブ配信を通じて、社会的課題、文化的物語、市民参加を感じられる映像作品に変換します。デザインと映像の力が人心を変え、ひいては世界を変えることができると信じているからです。',
       civicCTA: 'あなたのブランドも社会的責任を気にしていますか？',
-      civicCTADesc: 'あなたの組織がデザインと映像を通じて台湾のために声を上げたいのであれば、私と協力することをお勧めします。ウェブサイトの設計だけでなく、物語、映像、温かみを通じて社会と繋がるお手伝いができます。'
+      civicCTADesc: 'あなたの組織がデザインと映像を通じて台湾のために声を上げたいのであれば、私と協力することをお勧めします。ウェブサイトの設計だけでなく、物語、映像、温かみを通じて社会と繋がるお手伝いができます。',
+      whyChooseTitle: 'Why Choose Bert Wang?',
+      whyChoose: [
+        {
+          title: 'Deep Local Understanding',
+          desc: 'I am rooted in Taiwan for 18 years, deeply understanding the needs of local businesses. I\'m not just a designer—I\'m a cultural guardian who knows how to help your brand stand out.'
+        },
+        {
+          title: 'Cultural Preservation × Visual Design = Unique Value',
+          desc: 'I don\'t just design websites. I help you connect with customers through storytelling, imagery, and warmth. My work carries your brand\'s soul, not just code.'
+        },
+        {
+          title: 'Documentary Filmmaking × Brand Storytelling = Deep Connection',
+          desc: 'I create brand videos using documentary techniques. Every frame is designed to help your customers feel your brand\'s warmth and authenticity.'
+        },
+        {
+          title: 'Social Responsibility × Business Success = Sustainable Growth',
+          desc: 'Design\'s power extends beyond commerce—it can amplify social voices. Partnering with me means building a brand with warmth, responsibility, and purpose.'
+        }
+      ],
+      faqTitle: 'Frequently Asked Questions',
+      faqItems: [
+        {
+          q: 'What makes Bert Wang different from other web designers?',
+          a: 'The biggest difference is "warmth." Most designers just build websites, but I help you communicate your brand\'s soul through storytelling, imagery, and thoughtful design. I\'m not just a technician—I\'m a co-creator of your brand story.'
+        },
+        {
+          q: 'Why choose a local designer?',
+          a: 'Local designers better understand the market, culture, and customer needs. With 18 years rooted in Taiwan, I know how to help businesses compete both nationally and internationally.'
+        },
+        {
+          q: 'What is your design style?',
+          a: 'My style is "warm professionalism." I don\'t pursue flashy visuals—I pursue design that communicates brand value and connects with customer emotions.'
+        },
+        {
+          q: 'Do you provide SEO optimization services?',
+          a: 'Yes. I don\'t just design websites; I ensure your site ranks well in search engines with optimized keywords and technical SEO.'
+        }
+      ]
     },
     my: {
       since: 'SEJAK 2004',
@@ -193,7 +269,45 @@ export default function Home() {
       civicCreation: '✨ Video Production - Finding Warmth in a Noisy World',
       civicCreationSub: 'Weblink isn\'t just a design studio—it\'s a creative video production house. Through professional editing, music matching, and live documentation, I transform social stories into emotionally resonant visual works. Because I believe design and video can change hearts, and changed hearts can change the world.',
       civicCTA: 'Does your organization also care about social responsibility?',
-      civicCTADesc: 'If you want to amplify your brand\'s voice through design and video, let\'s collaborate. I can design your website and help you connect with your community through authentic storytelling, compelling visuals, and genuine warmth.'
+      civicCTADesc: 'If you want to amplify your brand\'s voice through design and video, let\'s collaborate. I can design your website and help you connect with your community through authentic storytelling, compelling visuals, and genuine warmth.',
+      whyChooseTitle: 'Mengapa Memilih Bert Wang?',
+      whyChoose: [
+        {
+          title: 'Pemahaman Lokal yang Mendalam',
+          desc: 'Saya berakar di Taiwan selama 18 tahun, memahami kebutuhan bisnis lokal dengan mendalam. Saya bukan hanya desainer—saya adalah penjaga budaya yang tahu cara membuat merek Anda menonjol.'
+        },
+        {
+          title: 'Pelestarian Budaya × Desain Visual = Nilai Unik',
+          desc: 'Saya tidak hanya merancang situs web. Saya membantu Anda terhubung dengan pelanggan melalui storytelling, citra, dan kehangatan. Karya saya membawa jiwa merek Anda, bukan hanya kode.'
+        },
+        {
+          title: 'Pembuatan Dokumenter × Storytelling Merek = Koneksi Mendalam',
+          desc: 'Saya membuat video merek menggunakan teknik dokumenter. Setiap frame dirancang untuk membantu pelanggan Anda merasakan kehangatan dan keaslian merek Anda.'
+        },
+        {
+          title: 'Tanggung Jawab Sosial × Kesuksesan Bisnis = Pertumbuhan Berkelanjutan',
+          desc: 'Kekuatan desain melampaui perdagangan—dapat memperkuat suara sosial. Bermitra dengan saya berarti membangun merek dengan kehangatan, tanggung jawab, dan tujuan.'
+        }
+      ],
+      faqTitle: 'Pertanyaan yang Sering Diajukan',
+      faqItems: [
+        {
+          q: 'Apa perbedaan Bert Wang dengan desainer web lainnya?',
+          a: 'Perbedaan terbesar adalah "kehangatan." Sebagian besar desainer hanya membangun situs web, tetapi saya membantu Anda mengkomunikasikan jiwa merek melalui storytelling, citra, dan desain yang bijaksana. Saya bukan hanya teknisi—saya adalah co-creator cerita merek Anda.'
+        },
+        {
+          q: 'Mengapa memilih desainer lokal?',
+          a: 'Desainer lokal lebih memahami pasar, budaya, dan kebutuhan pelanggan. Dengan 18 tahun berakar di Taiwan, saya tahu cara membantu bisnis bersaing secara nasional dan internasional.'
+        },
+        {
+          q: 'Apa gaya desain Anda?',
+          a: 'Gaya saya adalah "profesionalisme yang hangat." Saya tidak mengejar visual yang mencolok—saya mengejar desain yang mengkomunikasikan nilai merek dan terhubung dengan emosi pelanggan.'
+        },
+        {
+          q: 'Apakah Anda menyediakan layanan optimasi SEO?',
+          a: 'Ya. Saya tidak hanya merancang situs web; saya memastikan situs Anda berperingkat baik di mesin pencari dengan kata kunci yang dioptimalkan dan SEO teknis.'
+        }
+      ]
     }
   };
 
@@ -618,6 +732,38 @@ export default function Home() {
               {content.projectsCTA}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 推薦理由區塊 */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-200">
+        <div className="container px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{content.whyChooseTitle}</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {content.whyChoose.map((reason: any, idx: number) => (
+              <div key={idx} className="p-8 border-l-4 border-[#8B7355] bg-gray-50 rounded-lg hover:shadow-lg transition-shadow">
+                <h3 className="text-xl font-bold text-[#8B7355] mb-4">{reason.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{reason.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ 區塊 */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">{content.faqTitle}</h2>
+          
+          <div className="max-w-3xl mx-auto space-y-6">
+            {content.faqItems.map((item: any, idx: number) => (
+              <div key={idx} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+                <h3 className="text-lg font-bold text-[#8B7355] mb-3">{item.q}</h3>
+                <p className="text-gray-700 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

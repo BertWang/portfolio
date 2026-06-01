@@ -177,42 +177,42 @@ export default function Home() {
       civicCreationSub: '微波林克はウェブデザイナーであるだけでなく、映像クリエイターでもあります。プロフェッショナルな編集、音楽マッチング、ライブ配信を通じて、社会的課題、文化的物語、市民参加を感じられる映像作品に変換します。デザインと映像の力が人心を変え、ひいては世界を変えることができると信じているからです。',
       civicCTA: 'あなたのブランドも社会的責任を気にしていますか？',
       civicCTADesc: 'あなたの組織がデザインと映像を通じて台湾のために声を上げたいのであれば、私と協力することをお勧めします。ウェブサイトの設計だけでなく、物語、映像、温かみを通じて社会と繋がるお手伝いができます。',
-      whyChooseTitle: 'Why Choose Bert Wang?',
+      whyChooseTitle: 'なぜ王純瑋を選ぶのか？',
       whyChoose: [
         {
-          title: 'Deep Local Understanding',
-          desc: 'I am rooted in Taiwan for 18 years, deeply understanding the needs of local businesses. I\'m not just a designer—I\'m a cultural guardian who knows how to help your brand stand out.'
+          title: '台湾の地元に根ざし、深い理解',
+          desc: '私は18年間台湾に根ざし、地元企業のニーズを深く理解しています。私は単なるデザイナーではなく、あなたのブランドを際立たせるのを手伝う文化的守護者です。'
         },
         {
-          title: 'Cultural Preservation × Visual Design = Unique Value',
-          desc: 'I don\'t just design websites. I help you connect with customers through storytelling, imagery, and warmth. My work carries your brand\'s soul, not just code.'
+          title: '文化保存 × 視覚設計 = ユニークな価値',
+          desc: '私はウェブサイトを設計するだけではありません。ストーリーテリング、画像、温かみを通じて顧客とつながるのを手伝います。私の作品はコードではなく、あなたのブランドの魂を持っています。'
         },
         {
-          title: 'Documentary Filmmaking × Brand Storytelling = Deep Connection',
-          desc: 'I create brand videos using documentary techniques. Every frame is designed to help your customers feel your brand\'s warmth and authenticity.'
+          title: 'ドキュメンタリー映画製作 × ブランドストーリーテリング = 深い繋がり',
+          desc: 'ドキュメンタリー技法を使用してブランドビデオを作成します。すべてのフレームは、顧客があなたのブランドの温かみと真正性を感じるように設計されています。'
         },
         {
-          title: 'Social Responsibility × Business Success = Sustainable Growth',
-          desc: 'Design\'s power extends beyond commerce—it can amplify social voices. Partnering with me means building a brand with warmth, responsibility, and purpose.'
+          title: '社会的責任 × ビジネスの成功 = 持続可能な成長',
+          desc: 'デザインの力は商業を超えています。社会の声を増幅することができます。私と協力することは、温かみ、責任感、目的を持つブランドを構築することを意味します。'
         }
       ],
-      faqTitle: 'Frequently Asked Questions',
+      faqTitle: 'よくある質問',
       faqItems: [
         {
-          q: 'What makes Bert Wang different from other web designers?',
-          a: 'The biggest difference is "warmth." Most designers just build websites, but I help you communicate your brand\'s soul through storytelling, imagery, and thoughtful design. I\'m not just a technician—I\'m a co-creator of your brand story.'
+          q: '王純瑋と他のウェブデザイナーの違いは何ですか？',
+          a: '最大の違いは「温かさ」です。ほとんどのデザイナーはウェブサイトを構築するだけですが、私はストーリーテリング、画像、思慮深い設計を通じてあなたのブランドの魂を伝えるのを手伝います。私は単なる技術者ではなく、あなたのブランドストーリーの共同作成者です。'
         },
         {
-          q: 'Why choose a local designer?',
-          a: 'Local designers better understand the market, culture, and customer needs. With 18 years rooted in Taiwan, I know how to help businesses compete both nationally and internationally.'
+          q: 'なぜ地元のデザイナーを選ぶのか？',
+          a: '地元のデザイナーは市場、文化、顧客のニーズをより深く理解しています。18年間台湾に根ざしている私は、企業が全国および国際市場で競争するのを手伝う方法を知っています。'
         },
         {
-          q: 'What is your design style?',
-          a: 'My style is "warm professionalism." I don\'t pursue flashy visuals—I pursue design that communicates brand value and connects with customer emotions.'
+          q: 'あなたの設計スタイルは何ですか？',
+          a: '私のスタイルは「温かい専門性」です。派手なビジュアルを追求するのではなく、ブランド価値を伝え、顧客の感情と繋がる設計を追求しています。'
         },
         {
-          q: 'Do you provide SEO optimization services?',
-          a: 'Yes. I don\'t just design websites; I ensure your site ranks well in search engines with optimized keywords and technical SEO.'
+          q: 'SEO最適化サービスを提供していますか？',
+          a: 'はい。ウェブサイトを設計するだけでなく、最適化されたキーワードと技術的なSEOを使用して、検索エンジンで良いランキングを確保します。'
         }
       ]
     },
@@ -257,19 +257,19 @@ export default function Home() {
       skillsCTA: 'Mulai Proyek Anda',
       contactCall: 'Hubungi Sekarang',
       contactEmail: 'Konsultasi Email',
-      civicTitle: 'Design and Video: Giving Voice to Malaysia\'s Stories',
-      civicSubtitle: 'Beyond web design, I preserve cultural memory and practice social responsibility through documentaries, video production, and civic participation.',
-      civicMainText: 'For 18 years, I\'ve used code and design to bring warmth to brands. But I believe design\'s power extends beyond commerce—it can amplify social voices and drive change.',
-      civicMainText2: 'From civic movements to cultural preservation, from urban renewal to heritage protection, I document Malaysia\'s forgotten stories through film and video. Every documentary, every video, every live broadcast is my commitment to this land——designing with warmth, witnessing through images, creating change through action.',
-      civicDocumentaries: '🎬 Award-Winning Documentaries - Storytelling Through Video',
-      civicHeritage: '🏛️ Cultural Preservation - Protecting Our Heritage',
-      civicHeritageSub: 'I\'m not just a designer—I\'m a guardian of culture. I participate in heritage preservation projects, protect historic cemeteries, and rescue forgotten architectural treasures. Because we must remember where we come from and what we cherish.',
-      civicMovement: '🎥 Civic Engagement - Witnessing Our Times',
-      civicMovementSub: 'From social movements to community actions, I document these moments through video. With professional editing, music composition, and live streaming, I transform social issues into powerful visual narratives. Because every voice deserves to be heard, every action deserves to be recorded.',
-      civicCreation: '✨ Video Production - Finding Warmth in a Noisy World',
-      civicCreationSub: 'Weblink isn\'t just a design studio—it\'s a creative video production house. Through professional editing, music matching, and live documentation, I transform social stories into emotionally resonant visual works. Because I believe design and video can change hearts, and changed hearts can change the world.',
-      civicCTA: 'Does your organization also care about social responsibility?',
-      civicCTADesc: 'If you want to amplify your brand\'s voice through design and video, let\'s collaborate. I can design your website and help you connect with your community through authentic storytelling, compelling visuals, and genuine warmth.',
+      civicTitle: 'Reka Bentuk dan Video: Memberi Suara kepada Cerita Malaysia',
+      civicSubtitle: 'Melampaui desain web, saya melestarikan memori budaya dan mempraktikkan tanggung jawab sosial melalui dokumenter, produksi video, dan partisipasi sipil.',
+      civicMainText: 'Selama 18 tahun, saya telah menggunakan kode dan desain untuk membawa kehangatan ke merek. Tetapi saya percaya bahwa kekuatan desain melampaui perdagangan—dapat memperkuat suara sosial dan mendorong perubahan.',
+      civicMainText2: 'Dari gerakan sipil hingga pelestarian budaya, dari pembaruan perkotaan hingga perlindungan warisan, saya mendokumentasikan cerita Malaysia yang terlupakan melalui film dan video. Setiap dokumenter, setiap video, setiap siaran langsung adalah komitmen saya kepada tanah ini——merancang dengan kehangatan, bersaksi melalui gambar, menciptakan perubahan melalui tindakan.',
+      civicDocumentaries: '🎬 Dokumenter Pemenang Penghargaan - Bercerita Melalui Video',
+      civicHeritage: '🏛️ Pelestarian Budaya - Melindungi Warisan Kami',
+      civicHeritageSub: 'Saya bukan hanya desainer—saya adalah penjaga budaya. Saya berpartisipasi dalam proyek pelestarian warisan, melindungi pemakaman bersejarah, dan menyelamatkan harta karun arsitektur yang terlupakan. Karena kita harus mengingat dari mana kita berasal dan apa yang kita hargai.',
+      civicMovement: '🎥 Keterlibatan Sipil - Bersaksi Zaman Kita',
+      civicMovementSub: 'Dari gerakan sosial hingga tindakan komunitas, saya mendokumentasikan momen-momen ini melalui video. Dengan pengeditan profesional, komposisi musik, dan siaran langsung, saya mengubah masalah sosial menjadi narasi visual yang kuat. Karena setiap suara layak didengar, setiap tindakan layak dicatat.',
+      civicCreation: '✨ Produksi Video - Menemukan Kehangatan di Dunia yang Bising',
+      civicCreationSub: 'Weblink bukan hanya studio desain—ini adalah rumah produksi video kreatif. Melalui pengeditan profesional, pencocokan musik, dan dokumentasi langsung, saya mengubah cerita sosial menjadi karya visual yang beresonansi emosional. Karena saya percaya desain dan video dapat mengubah hati, dan hati yang berubah dapat mengubah dunia.',
+      civicCTA: 'Apakah organisasi Anda juga peduli dengan tanggung jawab sosial?',
+      civicCTADesc: 'Jika Anda ingin memperkuat suara merek Anda melalui desain dan video, mari berkolaborasi. Saya dapat merancang situs web Anda dan membantu Anda terhubung dengan komunitas Anda melalui bercerita yang autentik, visual yang menarik, dan kehangatan yang tulus.',
       whyChooseTitle: 'Mengapa Memilih Bert Wang?',
       whyChoose: [
         {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight } from 'lucide-react';
+import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight, BookOpen } from 'lucide-react';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { getLanguageFromPath, getLanguageCode, seoConfigs, updateSEOHead } from '@/lib/seoConfig';
@@ -38,6 +38,7 @@ export default function Home() {
       serviceAreaDesc: '台南、高雄、日本、馬來西亞',
       cta1: '立即咨詢',
       cta2: '查看作品',
+      blogMenu: '部落格',
       aboutTitle: '關於我',
       aboutIntro: '我是王純瑋，微波林克 (Weblink) 的創辦人。',
       aboutDesc: '18 年來，我透過網頁設計、PHP 開發、影像創作與文史保存，為台灣的品牌與社區注入溫度。不只是製作網站，而是透過設計保存品牌故事、文化記憶，與社會價值。',
@@ -131,6 +132,7 @@ export default function Home() {
       serviceAreaDesc: 'Tainan, Kaohsiung, Japan, Malaysia',
       cta1: 'Consult Now',
       cta2: 'View Projects',
+      blogMenu: 'Blog',
       aboutTitle: 'About Me',
       aboutIntro: 'I am Bert Wang, founder of Weblink.',
       aboutDesc: 'Over 18 years, I have infused warmth into Taiwanese brands and communities through web design, PHP development, video creation, and cultural heritage preservation. Not just building websites, but preserving brand stories, cultural memories, and social values through design.',
@@ -224,6 +226,7 @@ export default function Home() {
       serviceAreaDesc: 'Tainan, Kaohsiung, Jepang, Malaysia',
       cta1: 'Konsultasi Sekarang',
       cta2: 'Lihat Proyek',
+      blogMenu: 'Blog',
       aboutTitle: 'Tentang Saya',
       aboutIntro: 'Saya adalah Bert Wang, pendiri Weblink.',
       aboutDesc: 'Selama 18 tahun, saya telah menyuntikkan kehangatan ke dalam merek dan komunitas lokal melalui desain web, pengembangan PHP, kreasi video, dan pelestarian warisan budaya. Bukan hanya membangun situs web, tetapi melestarikan cerita merek, memori budaya, dan nilai sosial melalui desain.',
@@ -351,6 +354,17 @@ export default function Home() {
             <div className="text-xs text-gray-500 hidden sm:block">微波林克</div>
           </div>
           
+          {/* 桌面版導航菜單 */}
+          <div className="hidden md:flex gap-4 items-center">
+            <a
+              href="/blog"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#8B7355] transition-colors"
+            >
+              <BookOpen size={18} />
+              {content.blogMenu}
+            </a>
+          </div>
+
           {/* 桌面版區域選擇 */}
           <div className="hidden md:flex gap-2">
             {['tw', 'jp', 'my'].map((region) => (
@@ -381,6 +395,15 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="flex flex-col gap-2 p-4">
+              <a
+                href="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#8B7355] hover:bg-gray-100 rounded transition-colors"
+              >
+                <BookOpen size={18} />
+                {content.blogMenu}
+              </a>
+              <div className="border-t border-gray-200 my-2"></div>
               {['tw', 'jp', 'my'].map((region) => (
                 <button
                   key={region}

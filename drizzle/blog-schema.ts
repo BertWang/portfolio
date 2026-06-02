@@ -1,30 +1,5 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, json, date, longtext } from "drizzle-orm/mysql-core";
-import { sql } from "drizzle-orm";
-
-/**
- * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
- */
-export const users = mysqlTable("users", {
-  /**
-   * Surrogate primary key. Auto-incremented numeric value managed by the database.
-   * Use this for relations between tables.
-   */
-  id: int("id").autoincrement().primaryKey(),
-  /** Manus OAuth identifier (openId) returned from the OAuth callback. Unique per user. */
-  openId: varchar("openId", { length: 64 }).notNull().unique(),
-  name: text("name"),
-  email: varchar("email", { length: 320 }),
-  loginMethod: varchar("loginMethod", { length: 64 }),
-  role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
-  lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
-});
-
-export type User = typeof users.$inferSelect;
-export type InsertUser = typeof users.$inferInsert;
+import { mysqlTable, varchar, text, longtext, timestamp, int, boolean, json, date } from 'drizzle-orm/mysql-core';
+import { sql } from 'drizzle-orm';
 
 /**
  * Blog Posts Table
@@ -50,8 +25,8 @@ export const blogPosts = mysqlTable('blog_posts', {
   contentMy: longtext('content_my'),
   
   // Metadata
-  category: varchar('category', { length: 50 }),
-  tags: json('tags').$type<string[]>(),
+  category: varchar('category', { length: 50 }), // e.g., "台南設計", "文化保存", "SEO優化"
+  tags: json('tags').$type<string[]>(), // JSON array of tags
   featuredImageUrl: varchar('featured_image_url', { length: 500 }),
   author: varchar('author', { length: 100 }).default('Bert Wang'),
   
@@ -71,9 +46,6 @@ export const blogPosts = mysqlTable('blog_posts', {
   createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
   updatedAt: timestamp('updated_at').default(sql`CURRENT_TIMESTAMP`).onUpdateNow(),
 });
-
-export type BlogPost = typeof blogPosts.$inferSelect;
-export type NewBlogPost = typeof blogPosts.$inferInsert;
 
 /**
  * Case Studies Table
@@ -110,14 +82,14 @@ export const caseStudies = mysqlTable('case_studies', {
   
   // Project metadata
   clientName: varchar('client_name', { length: 100 }),
-  projectCategory: varchar('project_category', { length: 50 }),
-  technologies: json('technologies').$type<string[]>(),
+  projectCategory: varchar('project_category', { length: 50 }), // e.g., "網頁設計", "PHP開發"
+  technologies: json('technologies').$type<string[]>(), // JSON array of tech stack
   projectUrl: varchar('project_url', { length: 500 }),
   completionDate: date('completion_date'),
   
   // Images
   featuredImageUrl: varchar('featured_image_url', { length: 500 }),
-  projectImages: json('project_images').$type<string[]>(),
+  projectImages: json('project_images').$type<string[]>(), // JSON array of image URLs
   
   // Publishing
   isPublished: boolean('is_published').default(true),
@@ -127,5 +99,24 @@ export const caseStudies = mysqlTable('case_studies', {
   updatedAt: timestamp('updated_at').default(sql`CURRENT_TIMESTAMP`).onUpdateNow(),
 });
 
+/**
+ * Blog Post Comments Table (optional)
+ * Stores comments on blog posts
+ */
+export const blogComments = mysqlTable('blog_comments', {
+  id: int('id').primaryKey().autoincrement(),
+  postId: int('post_id').notNull(),
+  authorName: varchar('author_name', { length: 100 }).notNull(),
+  authorEmail: varchar('author_email', { length: 100 }).notNull(),
+  content: text('content').notNull(),
+  isApproved: boolean('is_approved').default(false),
+  createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
+});
+
+// Export types for use in application
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type NewBlogPost = typeof blogPosts.$inferInsert;
 export type CaseStudy = typeof caseStudies.$inferSelect;
 export type NewCaseStudy = typeof caseStudies.$inferInsert;
+export type BlogComment = typeof blogComments.$inferSelect;
+export type NewBlogComment = typeof blogComments.$inferInsert;

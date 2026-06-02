@@ -4,6 +4,8 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import { LoadingProvider } from "./contexts/LoadingContext";
 import { LoadingSpinner } from "./components/LoadingSpinner";
 import { useEffect, useState } from "react";
@@ -43,6 +45,11 @@ function Router() {
         <Route path="/tw/*" component={Home} />
         <Route path="/jp/*" component={Home} />
         <Route path="/my/*" component={Home} />
+        
+        {/* Blog routes */}
+        <Route path="/blog" component={Blog} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
       </Switch>

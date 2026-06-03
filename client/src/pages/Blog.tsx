@@ -9,6 +9,7 @@ import { Link } from 'wouter';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import { generateBlogListMeta, updateMetaTags } from '@/lib/seoMeta';
+import { BlogSearch } from '@/components/BlogSearch';
 
 export default function Blog() {
   const { user } = useAuth();
@@ -48,6 +49,10 @@ export default function Blog() {
       <div className="bg-white border-b sticky top-0 z-10">
         <div className="container py-6">
           <div className="space-y-4">
+            {/* Search */}
+            <div className="max-w-md">
+              <BlogSearch language="tw" />
+            </div>
             {/* Sort Options */}
             <div className="flex gap-2 flex-wrap">
               <Button

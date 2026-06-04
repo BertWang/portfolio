@@ -18,6 +18,21 @@ export default function BlogPost() {
 
   const slug = params?.slug as string;
 
+  // 內部連結映射（根據 INTERNAL_LINKING_STRATEGY.md）
+  const linkingMap: Record<number, number[]> = {
+    1: [2, 4, 12],
+    2: [1, 5, 6],
+    3: [4, 12, 13],
+    5: [2, 6, 7],
+    7: [8, 9, 10],
+    8: [7, 9, 10],
+    9: [7, 8, 11],
+    10: [9, 7, 11],
+    11: [7, 10, 20],
+    12: [1, 4, 13],
+    13: [3, 10, 12]
+  };
+
   // 模擬從 API 獲取數據
   useEffect(() => {
     if (!slug) return;
@@ -27,11 +42,21 @@ export default function BlogPost() {
       const foundPost = SAMPLE_ARTICLES.find(a => a.slug === slug);
       if (foundPost) {
         setPost(foundPost);
-        // 獲取相關文章
+        // 獲取相關文章（基於內部連結策略）
+        const relatedIds = linkingMap[foundPost.id] || [];
         const related = SAMPLE_ARTICLES.filter(
-          a => a.category === foundPost.category && a.id !== foundPost.id
+          a => relatedIds.includes(a.id)
         ).slice(0, 3);
-        setRelatedPosts(related);
+        
+        // 如果沒有基於連結策略的相關文章，則使用分類相關
+        if (related.length === 0) {
+          const categoryRelated = SAMPLE_ARTICLES.filter(
+            a => a.category === foundPost.category && a.id !== foundPost.id
+          ).slice(0, 3);
+          setRelatedPosts(categoryRelated);
+        } else {
+          setRelatedPosts(related);
+        }
       }
       setIsLoading(false);
     }, 300);

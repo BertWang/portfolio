@@ -8,55 +8,10 @@ import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import { generateBlogListMeta, updateMetaTags } from '@/lib/seoMeta';
 import { BlogSearch } from '@/components/BlogSearch';
+import { SAMPLE_ARTICLES } from '@/data/articles';
 
-// 示例文章數據
-const SAMPLE_ARTICLES = [
-  {
-    id: 1,
-    slug: "tainan-design-soul",
-    title: "台南設計的靈魂：為什麼在地文化是最好的設計靈感",
-    category: "台南設計",
-    excerpt: "在台南進行了 18 年的設計工作後，我深刻理解到：最好的設計靈感不來自國際趨勢，而來自腳下這片土地的文化。",
-    content: "在台南進行了 18 年的設計工作後，我深刻理解到：最好的設計靈感不來自國際趨勢，而來自腳下這片土地的文化。台南擁有豐富的古蹟、傳統工藝和集體記憶，這些都是創造具有靈魂的品牌設計的寶庫。",
-    author: "王純瑋",
-    publishedAt: "2024-06-01T00:00:00Z",
-    featured: true,
-    readingTime: 8,
-    viewCount: 245,
-    keywords: "台南設計,品牌設計,文化設計,視覺識別,設計靈感",
-    color: "from-amber-400 to-orange-500",
-  },
-  {
-    id: 2,
-    slug: "ancient-to-modern",
-    title: "從古蹟到現代：台南文化地景的視覺轉譯",
-    category: "文化保存",
-    excerpt: "台南的古蹟不是靜止的歷史遺跡，而是活動的文化資產。如何用現代設計語言來詮釋這些古蹟，讓年輕一代能夠與文化產生連結。",
-    content: "台南的古蹟不是靜止的歷史遺跡，而是活動的文化資產。如何用現代設計語言來詮釋這些古蹟，讓年輕一代能夠與文化產生連結，是我多年來思考的核心問題。",
-    author: "王純瑋",
-    publishedAt: "2024-06-02T00:00:00Z",
-    featured: true,
-    readingTime: 7,
-    viewCount: 189,
-    keywords: "古蹟保存,文化遺產,台南古蹟,視覺設計,數位化",
-    color: "from-red-400 to-pink-500",
-  },
-  {
-    id: 3,
-    slug: "sme-branding-breakthrough",
-    title: "台南中小企業的品牌困境：如何用設計突圍",
-    category: "品牌設計",
-    excerpt: "台南有許多優秀的中小企業，但他們往往面臨一個共同的困境：如何在激烈的市場競爭中建立獨特的品牌形象？",
-    content: "台南有許多優秀的中小企業，但他們往往面臨一個共同的困境：如何在激烈的市場競爭中建立獨特的品牌形象？答案不在於花費巨資進行廣告投放，而在於通過精心的設計來傳達品牌的核心價值。",
-    author: "王純瑋",
-    publishedAt: "2024-06-03T00:00:00Z",
-    featured: false,
-    readingTime: 6,
-    viewCount: 156,
-    keywords: "品牌設計,中小企業,台南企業,品牌策略,視覺識別",
-    color: "from-blue-400 to-cyan-500",
-  },
-];
+// 文章數據已從 @/data/articles 導入
+
 
 export default function Blog() {
   const { user } = useAuth();

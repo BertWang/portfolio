@@ -24,6 +24,7 @@ const SAMPLE_ARTICLES = [
     readingTime: 8,
     viewCount: 245,
     keywords: "台南設計,品牌設計,文化設計,視覺識別,設計靈感",
+    color: "from-amber-400 to-orange-500",
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ const SAMPLE_ARTICLES = [
     readingTime: 7,
     viewCount: 189,
     keywords: "古蹟保存,文化遺產,台南古蹟,視覺設計,數位化",
+    color: "from-red-400 to-pink-500",
   },
   {
     id: 3,
@@ -52,6 +54,7 @@ const SAMPLE_ARTICLES = [
     readingTime: 6,
     viewCount: 156,
     keywords: "品牌設計,中小企業,台南企業,品牌策略,視覺識別",
+    color: "from-blue-400 to-cyan-500",
   },
 ];
 
@@ -191,10 +194,10 @@ export default function Blog() {
                   <a className="group">
                     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                       {/* Featured Image */}
-                      <div className="h-48 bg-gradient-to-br from-blue-200 to-slate-300 overflow-hidden flex items-center justify-center">
+                      <div className={`h-48 bg-gradient-to-br ${post.color} overflow-hidden flex items-center justify-center`}>
                         <div className="text-center">
-                          <div className="text-4xl font-bold text-white opacity-50">{post.id}</div>
-                          <p className="text-sm text-white opacity-50 mt-2">{post.category}</p>
+                          <div className="text-5xl font-bold text-white opacity-80">📝</div>
+                          <p className="text-sm text-white opacity-70 mt-2 font-semibold">{post.category}</p>
                         </div>
                       </div>
 

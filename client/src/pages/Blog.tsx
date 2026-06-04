@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/_core/hooks/useAuth';
-import { trpc } from '@/lib/trpc';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
 import { Link } from 'wouter';
 import { format } from 'date-fns';
@@ -11,11 +9,59 @@ import { zhTW } from 'date-fns/locale';
 import { generateBlogListMeta, updateMetaTags } from '@/lib/seoMeta';
 import { BlogSearch } from '@/components/BlogSearch';
 
+// 示例文章數據
+const SAMPLE_ARTICLES = [
+  {
+    id: 1,
+    slug: "tainan-design-soul",
+    title: "台南設計的靈魂：為什麼在地文化是最好的設計靈感",
+    category: "台南設計",
+    excerpt: "在台南進行了 18 年的設計工作後，我深刻理解到：最好的設計靈感不來自國際趨勢，而來自腳下這片土地的文化。",
+    content: "在台南進行了 18 年的設計工作後，我深刻理解到：最好的設計靈感不來自國際趨勢，而來自腳下這片土地的文化。台南擁有豐富的古蹟、傳統工藝和集體記憶，這些都是創造具有靈魂的品牌設計的寶庫。",
+    author: "王純瑋",
+    publishedAt: "2024-06-01T00:00:00Z",
+    featured: true,
+    readingTime: 8,
+    viewCount: 245,
+    keywords: "台南設計,品牌設計,文化設計,視覺識別,設計靈感",
+  },
+  {
+    id: 2,
+    slug: "ancient-to-modern",
+    title: "從古蹟到現代：台南文化地景的視覺轉譯",
+    category: "文化保存",
+    excerpt: "台南的古蹟不是靜止的歷史遺跡，而是活動的文化資產。如何用現代設計語言來詮釋這些古蹟，讓年輕一代能夠與文化產生連結。",
+    content: "台南的古蹟不是靜止的歷史遺跡，而是活動的文化資產。如何用現代設計語言來詮釋這些古蹟，讓年輕一代能夠與文化產生連結，是我多年來思考的核心問題。",
+    author: "王純瑋",
+    publishedAt: "2024-06-02T00:00:00Z",
+    featured: true,
+    readingTime: 7,
+    viewCount: 189,
+    keywords: "古蹟保存,文化遺產,台南古蹟,視覺設計,數位化",
+  },
+  {
+    id: 3,
+    slug: "sme-branding-breakthrough",
+    title: "台南中小企業的品牌困境：如何用設計突圍",
+    category: "品牌設計",
+    excerpt: "台南有許多優秀的中小企業，但他們往往面臨一個共同的困境：如何在激烈的市場競爭中建立獨特的品牌形象？",
+    content: "台南有許多優秀的中小企業，但他們往往面臨一個共同的困境：如何在激烈的市場競爭中建立獨特的品牌形象？答案不在於花費巨資進行廣告投放，而在於通過精心的設計來傳達品牌的核心價值。",
+    author: "王純瑋",
+    publishedAt: "2024-06-03T00:00:00Z",
+    featured: false,
+    readingTime: 6,
+    viewCount: 156,
+    keywords: "品牌設計,中小企業,台南企業,品牌策略,視覺識別",
+  },
+];
+
 export default function Blog() {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState<string | undefined>();
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'popular'>('newest');
+  const [postsData, setPostsData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Update SEO meta tags
   useEffect(() => {
@@ -23,13 +69,40 @@ export default function Blog() {
     updateMetaTags(meta);
   }, [category]);
 
-  const { data: postsData, isLoading } = trpc.blog.posts.useQuery({
-    page,
-    limit: 12,
-    category,
-    sortBy,
-    language: 'tw',
-  });
+  // 模擬從 API 獲取數據
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      let articles = [...SAMPLE_ARTICLES];
+      
+      // 篩選分類
+      if (category) {
+        articles = articles.filter(a => a.category === category);
+      }
+      
+      // 排序
+      if (sortBy === 'newest') {
+        articles = articles.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+      } else if (sortBy === 'oldest') {
+        articles = articles.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
+      } else if (sortBy === 'popular') {
+        articles = articles.sort((a, b) => b.viewCount - a.viewCount);
+      }
+      
+      // 分頁
+      const start = (page - 1) * 12;
+      const end = start + 12;
+      const paginatedArticles = articles.slice(start, end);
+      
+      setPostsData({
+        posts: paginatedArticles,
+        total: articles.length,
+        page,
+        limit: 12,
+      });
+      setIsLoading(false);
+    }, 300);
+  }, [page, category, sortBy]);
 
   const categories = ['台南設計', 'SEO 優化', '文化保存', 'PHP 開發', '品牌設計', '影像創作'];
 
@@ -118,15 +191,12 @@ export default function Blog() {
                   <a className="group">
                     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                       {/* Featured Image */}
-                      {post.featuredImageUrl && (
-                        <div className="h-48 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
-                          <img
-                            src={post.featuredImageUrl}
-                            alt={post.titleTw}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                          />
+                      <div className="h-48 bg-gradient-to-br from-blue-200 to-slate-300 overflow-hidden flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-4xl font-bold text-white opacity-50">{post.id}</div>
+                          <p className="text-sm text-white opacity-50 mt-2">{post.category}</p>
                         </div>
-                      )}
+                      </div>
 
                       {/* Content */}
                       <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
@@ -138,12 +208,12 @@ export default function Blog() {
 
                         {/* Title */}
                         <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                          {post.titleTw}
+                          {post.title}
                         </h3>
 
                         {/* Excerpt */}
                         <p className="text-sm text-slate-600 line-clamp-3 mb-4 flex-grow">
-                          {post.excerptTw}
+                          {post.excerpt}
                         </p>
 
                         {/* Meta */}

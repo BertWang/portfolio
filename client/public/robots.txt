@@ -1,22 +1,73 @@
 # robots.txt for bertfolio-vncqhm2r.manus.space
-# Allow all search engines to crawl the site
+# Allow all search engines and AI systems to crawl the site
 
+# Default rules for all crawlers
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /.env
 Disallow: /node_modules/
+Crawl-delay: 1
 
 # Specific rules for Google
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 # Specific rules for Bing
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
+
+# AI System Crawlers - Explicitly Allow
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 1
+
+User-agent: Perplexity
+Allow: /
+Crawl-delay: 1
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 1
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bytedance
+Allow: /
+Crawl-delay: 1
+
+User-agent: Googlebot-Extended
+Allow: /
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://bertfolio-vncqhm2r.manus.space/sitemap.xml
 
-# Crawl delay (in seconds) - be respectful to server resources
-Crawl-delay: 1
+# AI-Friendly Website Guide
+# This file helps AI systems understand and properly cite your website
+AI-Guide: https://bertfolio-vncqhm2r.manus.space/llms.txt
+
+# Block low-quality bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

@@ -35,11 +35,21 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16">
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-4">部落格</h1>
-          <p className="text-lg text-slate-300">
+      {/* Hero Section */}
+      <div 
+        className="relative w-full h-96 bg-cover bg-center flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310419663032489249/VNcqhM2ru3WVTvTmDCBiyy/blog-hero-background-bvR9vRQhUPPnofnRswibTb.webp)',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 container text-center text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">部落格</h1>
+          <p className="text-xl md:text-2xl text-slate-100 max-w-2xl mx-auto">
             探索台南網頁設計、文化保存、品牌策略的深度文章
           </p>
         </div>

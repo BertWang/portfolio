@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -11,6 +11,19 @@ import { trpc } from '@/lib/trpc';
 import { toast } from 'sonner';
 import { Streamdown } from 'streamdown';
 
+/**
+ * Memoized article content component for performance optimization
+ */
+const ArticleContent = ({ content }: { content: string }) => {
+  const memoizedContent = useMemo(() => (
+    <div className="prose prose-lg max-w-none mb-12">
+      <Streamdown>{content}</Streamdown>
+    </div>
+  ), [content]);
+  
+  return memoizedContent;
+};
+
 export default function BlogPost() {
   const { user } = useAuth();
   const [match, params] = useRoute('/blog/:slug');
@@ -18,16 +31,24 @@ export default function BlogPost() {
 
   const slug = params?.slug as string;
 
-  // 從 tRPC 獲取文章詳情
+  // 從 tRPC 獲取文章詳情（使用 5 分鐘緩存）
   const { data: post, isLoading: postLoading } = trpc.blog.postBySlug.useQuery(
     { slug },
-    { enabled: !!slug }
+    { 
+      enabled: !!slug,
+      staleTime: 5 * 60 * 1000, // 5 分鐘內不重新查詢
+      gcTime: 10 * 60 * 1000,   // 10 分鐘後清除緩存
+    }
   );
 
-  // 從 tRPC 獲取相關文章
+  // 從 tRPC 獲取相關文章（使用 10 分鐘緩存）
   const { data: relatedPosts, isLoading: relatedLoading } = trpc.blog.relatedPosts.useQuery(
     { category: post?.category || '', limit: 3 },
-    { enabled: !!post?.category }
+    { 
+      enabled: !!post?.category,
+      staleTime: 10 * 60 * 1000, // 10 分鐘內不重新查詢
+      gcTime: 20 * 60 * 1000,    // 20 分鐘後清除緩存
+    }
   );
 
   // Update SEO meta tags
@@ -214,9 +235,7 @@ export default function BlogPost() {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none mb-12">
-            <Streamdown>{post.contentTw}</Streamdown>
-          </div>
+          <ArticleContent content={post.contentTw} />
 
           {/* SEO Keywords */}
           {post.seoKeywordsTw && (

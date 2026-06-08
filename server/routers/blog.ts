@@ -76,11 +76,12 @@ export const getBlogPostBySlugRouter = publicProcedure
       throw new Error('Blog post not found');
     }
 
-    // Increment view count
-    await db
+    // 異步更新 viewCount（不阻塞查詢返回）
+    db
       .update(blogPosts)
       .set({ viewCount: (posts[0].viewCount || 0) + 1 })
-      .where(eq(blogPosts.id, posts[0].id));
+      .where(eq(blogPosts.id, posts[0].id))
+      .catch(err => console.error('Failed to update view count:', err));
 
     return posts[0];
   });

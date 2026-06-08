@@ -8,59 +8,28 @@ import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import { generateBlogListMeta, updateMetaTags } from '@/lib/seoMeta';
 import { BlogSearch } from '@/components/BlogSearch';
-import { SAMPLE_ARTICLES } from '@/data/articles';
-
-// 文章數據已從 @/data/articles 導入
-
+import { trpc } from '@/lib/trpc';
 
 export default function Blog() {
   const { user } = useAuth();
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState<string | undefined>();
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'popular'>('newest');
-  const [postsData, setPostsData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+
+  // 從 tRPC 獲取博客文章
+  const { data: postsData, isLoading } = trpc.blog.posts.useQuery({
+    page,
+    limit: 12,
+    category,
+    sortBy,
+    language: 'tw',
+  });
 
   // Update SEO meta tags
   useEffect(() => {
     const meta = generateBlogListMeta(category);
     updateMetaTags(meta);
   }, [category]);
-
-  // 模擬從 API 獲取數據
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      let articles = [...SAMPLE_ARTICLES];
-      
-      // 篩選分類
-      if (category) {
-        articles = articles.filter(a => a.category === category);
-      }
-      
-      // 排序
-      if (sortBy === 'newest') {
-        articles = articles.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-      } else if (sortBy === 'oldest') {
-        articles = articles.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
-      } else if (sortBy === 'popular') {
-        articles = articles.sort((a, b) => b.viewCount - a.viewCount);
-      }
-      
-      // 分頁
-      const start = (page - 1) * 12;
-      const end = start + 12;
-      const paginatedArticles = articles.slice(start, end);
-      
-      setPostsData({
-        posts: paginatedArticles,
-        total: articles.length,
-        page,
-        limit: 12,
-      });
-      setIsLoading(false);
-    }, 300);
-  }, [page, category, sortBy]);
 
   const categories = ['台南設計', 'SEO 優化', '文化保存', 'PHP 開發', '品牌設計', '影像創作'];
 
@@ -149,11 +118,19 @@ export default function Blog() {
                   <a className="group">
                     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                       {/* Featured Image */}
-                      <div className={`h-48 bg-gradient-to-br ${post.color} overflow-hidden flex items-center justify-center`}>
-                        <div className="text-center">
-                          <div className="text-5xl font-bold text-white opacity-80">📝</div>
-                          <p className="text-sm text-white opacity-70 mt-2 font-semibold">{post.category}</p>
-                        </div>
+                      <div className="h-48 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden flex items-center justify-center">
+                        {post.featuredImageUrl ? (
+                          <img
+                            src={post.featuredImageUrl}
+                            alt={post.titleTw}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="text-center">
+                            <div className="text-5xl font-bold text-slate-400 opacity-50">📝</div>
+                            <p className="text-sm text-slate-500 opacity-70 mt-2 font-semibold">{post.category}</p>
+                          </div>
+                        )}
                       </div>
 
                       {/* Content */}
@@ -166,12 +143,12 @@ export default function Blog() {
 
                         {/* Title */}
                         <h3 className="text-lg font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                          {post.title}
+                          {post.titleTw}
                         </h3>
 
                         {/* Excerpt */}
                         <p className="text-sm text-slate-600 line-clamp-3 mb-4 flex-grow">
-                          {post.excerpt}
+                          {post.excerptTw}
                         </p>
 
                         {/* Meta */}

@@ -2,65 +2,33 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/_core/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, Calendar, Tag, Share2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, Share2, Copy, Check } from 'lucide-react';
 import { Link, useRoute } from 'wouter';
 import { format } from 'date-fns';
 import { zhTW } from 'date-fns/locale';
 import { generateBlogPostMeta, updateMetaTags } from '@/lib/seoMeta';
-import { SAMPLE_ARTICLES } from '@/data/articles';
+import { trpc } from '@/lib/trpc';
+import { toast } from 'sonner';
+import { Streamdown } from 'streamdown';
 
 export default function BlogPost() {
   const { user } = useAuth();
   const [match, params] = useRoute('/blog/:slug');
-  const [post, setPost] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [copied, setCopied] = useState(false);
 
   const slug = params?.slug as string;
 
-  // 內部連結映射（根據 INTERNAL_LINKING_STRATEGY.md）
-  const linkingMap: Record<number, number[]> = {
-    1: [2, 4, 12],
-    2: [1, 5, 6],
-    3: [4, 12, 13],
-    5: [2, 6, 7],
-    7: [8, 9, 10],
-    8: [7, 9, 10],
-    9: [7, 8, 11],
-    10: [9, 7, 11],
-    11: [7, 10, 20],
-    12: [1, 4, 13],
-    13: [3, 10, 12]
-  };
+  // 從 tRPC 獲取文章詳情
+  const { data: post, isLoading: postLoading } = trpc.blog.postBySlug.useQuery(
+    { slug },
+    { enabled: !!slug }
+  );
 
-  // 模擬從 API 獲取數據
-  useEffect(() => {
-    if (!slug) return;
-
-    setIsLoading(true);
-    setTimeout(() => {
-      const foundPost = SAMPLE_ARTICLES.find(a => a.slug === slug);
-      if (foundPost) {
-        setPost(foundPost);
-        // 獲取相關文章（基於內部連結策略）
-        const relatedIds = linkingMap[foundPost.id] || [];
-        const related = SAMPLE_ARTICLES.filter(
-          a => relatedIds.includes(a.id)
-        ).slice(0, 3);
-        
-        // 如果沒有基於連結策略的相關文章，則使用分類相關
-        if (related.length === 0) {
-          const categoryRelated = SAMPLE_ARTICLES.filter(
-            a => a.category === foundPost.category && a.id !== foundPost.id
-          ).slice(0, 3);
-          setRelatedPosts(categoryRelated);
-        } else {
-          setRelatedPosts(related);
-        }
-      }
-      setIsLoading(false);
-    }, 300);
-  }, [slug]);
+  // 從 tRPC 獲取相關文章
+  const { data: relatedPosts, isLoading: relatedLoading } = trpc.blog.relatedPosts.useQuery(
+    { category: post?.category || '', limit: 3 },
+    { enabled: !!post?.category }
+  );
 
   // Update SEO meta tags
   useEffect(() => {
@@ -69,6 +37,38 @@ export default function BlogPost() {
       updateMetaTags(meta);
     }
   }, [post]);
+
+  const handleCopyLink = () => {
+    const url = `${window.location.origin}/blog/${slug}`;
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    toast.success('連結已複製到剪貼簿');
+  };
+
+  const handleShare = (platform: 'facebook' | 'twitter' | 'linkedin') => {
+    const url = `${window.location.origin}/blog/${slug}`;
+    const title = post?.titleTw || '查看這篇文章';
+    
+    let shareUrl = '';
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        break;
+    }
+    
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+  };
+
+  const isLoading = postLoading;
 
   if (isLoading) {
     return (
@@ -104,87 +104,186 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with Featured Image */}
-      <div className={`bg-gradient-to-r ${post.color} text-white py-20`}>
-        <div className="container">
+      {/* Back Button */}
+      <div className="bg-white border-b sticky top-0 z-10">
+        <div className="container py-4">
           <Link href="/blog">
-            <a className="flex items-center gap-2 text-white hover:opacity-80 mb-6 w-fit">
+            <a className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold">
               <ArrowLeft className="w-4 h-4" />
               返回部落格
             </a>
           </Link>
-          <h1 className="text-5xl font-bold mb-4">{post.title}</h1>
-          <div className="flex items-center gap-4 text-white opacity-90">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              {format(new Date(post.publishedAt), 'MMMM d, yyyy', { locale: zhTW })}
-            </div>
-            <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4" />
-              {post.category}
-            </div>
-            <div className="flex items-center gap-2">
-              ⏱ {post.readingTime} 分鐘閱讀
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="container py-12">
         <div className="max-w-3xl mx-auto">
-          {/* Article Content */}
-          <div className="prose prose-lg max-w-none mb-12">
-            <div className="whitespace-pre-wrap text-slate-700 leading-relaxed">
-              {post.content.split('\n').map((line: string, i: number) => {
-                if (line.startsWith('# ')) {
-                  return <h1 key={i} className="text-3xl font-bold mt-8 mb-4">{line.slice(2)}</h1>;
-                }
-                if (line.startsWith('## ')) {
-                  return <h2 key={i} className="text-2xl font-bold mt-6 mb-3">{line.slice(3)}</h2>;
-                }
-                if (line.startsWith('**') && line.endsWith('**')) {
-                  return <p key={i} className="font-bold text-slate-800">{line.slice(2, -2)}</p>;
-                }
-                if (line.startsWith('1. ') || line.startsWith('2. ') || line.startsWith('3. ') || line.startsWith('4. ')) {
-                  return <li key={i} className="ml-6 mb-2">{line.slice(3)}</li>;
-                }
-                if (line.trim() === '') {
-                  return <div key={i} className="h-4" />;
-                }
-                return <p key={i} className="mb-4 text-slate-700">{line}</p>;
-              })}
+          {/* Featured Image */}
+          {post.featuredImageUrl && (
+            <div className="mb-8 rounded-lg overflow-hidden">
+              <img
+                src={post.featuredImageUrl}
+                alt={post.titleTw}
+                className="w-full h-96 object-cover"
+              />
+            </div>
+          )}
+
+          {/* Article Header */}
+          <div className="mb-8">
+            {/* Category & Date */}
+            <div className="flex items-center gap-4 mb-4 text-sm text-slate-600">
+              <div className="flex items-center gap-1">
+                <Tag className="w-4 h-4" />
+                {post.category}
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {post.publishedAt
+                  ? format(new Date(post.publishedAt), 'MMM d, yyyy', { locale: zhTW })
+                  : '未發佈'}
+              </div>
+              <div className="flex items-center gap-1">
+                👁 {post.viewCount || 0} 次瀏覽
+              </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl font-bold mb-4">{post.titleTw}</h1>
+
+            {/* Excerpt */}
+            <p className="text-xl text-slate-600 mb-6">{post.excerptTw}</p>
+
+            {/* Author */}
+            <div className="flex items-center gap-4 pb-6 border-b">
+              <div>
+                <p className="font-semibold text-slate-900">{post.author || 'Bert Wang'}</p>
+                <p className="text-sm text-slate-600">台南網頁設計師 | 品牌策略顧問</p>
+              </div>
             </div>
           </div>
 
-          {/* Author Info */}
-          <Card className="p-6 mb-12 bg-slate-50">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xl">
-                {post.author.charAt(0)}
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">{post.author}</h3>
-                <p className="text-slate-600">台南網頁設計師 | 品牌設計顧問 | 文化保存倡導者</p>
+          {/* Share Buttons */}
+          <div className="mb-8 p-4 bg-slate-50 rounded-lg flex items-center gap-2 flex-wrap">
+            <span className="text-sm font-semibold text-slate-700">分享文章：</span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('facebook')}
+              className="gap-2"
+            >
+              <Share2 className="w-4 h-4" />
+              Facebook
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('twitter')}
+              className="gap-2"
+            >
+              <Share2 className="w-4 h-4" />
+              Twitter
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleShare('linkedin')}
+              className="gap-2"
+            >
+              <Share2 className="w-4 h-4" />
+              LinkedIn
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleCopyLink}
+              className="gap-2"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  已複製
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4" />
+                  複製連結
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Article Content */}
+          <div className="prose prose-lg max-w-none mb-12">
+            <Streamdown>{post.contentTw}</Streamdown>
+          </div>
+
+          {/* SEO Keywords */}
+          {post.seoKeywordsTw && (
+            <div className="mb-8 p-4 bg-blue-50 rounded-lg">
+              <p className="text-sm font-semibold text-slate-700 mb-2">關鍵詞：</p>
+              <div className="flex flex-wrap gap-2">
+                {post.seoKeywordsTw.split(',').map((keyword: string) => (
+                  <span
+                    key={keyword.trim()}
+                    className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >
+                    {keyword.trim()}
+                  </span>
+                ))}
               </div>
             </div>
-          </Card>
+          )}
 
           {/* Related Articles */}
-          {relatedPosts.length > 0 && (
-            <div className="mb-12">
+          {relatedPosts && relatedPosts.length > 0 && (
+            <div className="mt-16 pt-8 border-t">
               <h2 className="text-2xl font-bold mb-6">相關文章</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {relatedPosts.map((relatedPost) => (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedPosts.map((relatedPost: any) => (
                   <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
                     <a className="group">
                       <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
-                        <div className={`h-32 bg-gradient-to-br ${relatedPost.color}`} />
+                        {/* Featured Image */}
+                        <div className="h-40 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
+                          {relatedPost.featuredImageUrl ? (
+                            <img
+                              src={relatedPost.featuredImageUrl}
+                              alt={relatedPost.titleTw}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <div className="text-4xl opacity-20">📝</div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Content */}
                         <div className="p-4">
+                          {/* Category */}
+                          <div className="flex items-center gap-2 mb-2">
+                            <Tag className="w-3 h-3 text-slate-500" />
+                            <span className="text-xs text-slate-600">{relatedPost.category}</span>
+                          </div>
+
+                          {/* Title */}
                           <h3 className="font-bold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                            {relatedPost.title}
+                            {relatedPost.titleTw}
                           </h3>
-                          <p className="text-sm text-slate-600 line-clamp-2">{relatedPost.excerpt}</p>
+
+                          {/* Excerpt */}
+                          <p className="text-sm text-slate-600 line-clamp-2 mb-3">
+                            {relatedPost.excerptTw}
+                          </p>
+
+                          {/* Date */}
+                          <div className="flex items-center gap-1 text-xs text-slate-500">
+                            <Calendar className="w-3 h-3" />
+                            {relatedPost.publishedAt
+                              ? format(new Date(relatedPost.publishedAt), 'MMM d', { locale: zhTW })
+                              : '未發佈'}
+                          </div>
                         </div>
                       </Card>
                     </a>
@@ -194,13 +293,13 @@ export default function BlogPost() {
             </div>
           )}
 
-          {/* Share Section */}
-          <div className="border-t pt-6 flex items-center gap-4">
-            <span className="text-slate-600">分享此文章：</span>
-            <Button variant="outline" size="sm" className="gap-2">
-              <Share2 className="w-4 h-4" />
-              分享
-            </Button>
+          {/* CTA Section */}
+          <div className="mt-16 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg text-center">
+            <h3 className="text-2xl font-bold mb-4">想要開始您的項目？</h3>
+            <p className="text-slate-600 mb-6">
+              如果您對本文內容感興趣，歡迎與我聯繫討論您的網頁設計或品牌策略需求。
+            </p>
+            <Button size="lg">立即咨詢</Button>
           </div>
         </div>
       </div>

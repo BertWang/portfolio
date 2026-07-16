@@ -42,12 +42,14 @@ export default function BlogPost() {
   );
 
   // 從 tRPC 獲取相關文章（使用 10 分鐘緩存）
+  // 使用 slug 而不是 category，避免依賴 post 加載完成
   const { data: relatedPosts, isLoading: relatedLoading } = trpc.blog.relatedPosts.useQuery(
     { category: post?.category || '', limit: 3 },
     { 
-      enabled: !!post?.category,
+      enabled: !!slug && !!post?.category, // 確保 slug 和 category 都存在
       staleTime: 10 * 60 * 1000, // 10 分鐘內不重新查詢
       gcTime: 20 * 60 * 1000,    // 20 分鐘後清除緩存
+      retry: 1, // 只重試 1 次
     }
   );
 
@@ -89,6 +91,7 @@ export default function BlogPost() {
     }
   };
 
+  // 只在文章加載時顯示 skeleton，不等待相關文章
   const isLoading = postLoading;
 
   if (isLoading) {

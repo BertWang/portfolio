@@ -771,8 +771,8 @@ export default function Home() {
               {activeRegion === 'tw' ? '從客製化設計延伸至自有數位產品，結合視覺、內容與技術開發。' : activeRegion === 'jp' ? '受託制作から自主プロダクトへ。デザイン、コンテンツ、技術を統合します。' : 'Dari desain khusus menuju produk digital milik sendiri.'}
             </p>
             <article className="grid md:grid-cols-2 rounded-xl overflow-hidden border border-[#E7E0D7] bg-[#F8F5F0] shadow-sm">
-              <div className="aspect-video md:aspect-auto md:min-h-[300px] bg-[#16243B] overflow-hidden">
-                <img src="/images/covers/astrolys.svg" alt="ASTROLYS 跨文化命理數位產品概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover" />
+              <div className="relative aspect-video md:aspect-auto md:min-h-[300px] bg-[#16243B] overflow-hidden">
+                <img src="/images/covers/astrolys.svg" alt="ASTROLYS 跨文化命理數位產品概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="absolute inset-0 w-full h-full object-cover" />
               </div>
               <div className="p-8 md:p-10 flex flex-col justify-center">
                 <p className="text-xs font-bold text-[#8B7355] tracking-widest mb-3">PRODUCT DESIGN · DEVELOPMENT</p>

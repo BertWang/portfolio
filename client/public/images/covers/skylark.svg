@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="天喜の記憶 概念視覺封面（非實際網站截圖）">
+<title>天喜の記憶｜Bertfolio concept cover</title><desc>Original editorial illustration themed around 天喜の記憶. This is not a screenshot of the deployed website.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9D6BD"/><stop offset="1" stop-color="#95735D"/></linearGradient><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="19" stdDeviation="23" flood-color="#000" flood-opacity=".27"/></filter></defs>
+<rect width="1280" height="720" fill="url(#bg)"/><circle cx="1203" cy="11" r="350" fill="#fff" opacity=".065"/><circle cx="40" cy="720" r="235" fill="#fff" opacity=".055"/>
+<text x="80" y="105" fill="#48362B" font-size="50" font-family="Noto Sans TC,Arial,sans-serif" font-weight="750">天喜の記憶</text>
+<text x="82" y="153" fill="#48362B" opacity=".8" font-size="18" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2">BRAND MEMORY ARCHIVE</text>
+<text x="82" y="266" fill="#48362B" font-size="27" font-family="Noto Sans TC,Arial,sans-serif" font-weight="600">那些被記得的旅程</text>
+<text x="82" y="313" fill="#715949" font-size="17" font-family="Arial,sans-serif" letter-spacing="1">1990–2014  ·  Culture & Memory</text>
+<rect x="447" y="133" width="740" height="446" rx="21" fill="#F5EADC" filter="url(#shadow)"/><rect x="447" y="133" width="740" height="51" rx="21" fill="#FFFAF2"/><rect x="447" y="164" width="740" height="21" fill="#FFFAF2"/>
+<circle cx="474" cy="158" r="6" fill="#ED7971"/><circle cx="495" cy="158" r="6" fill="#EABC68"/><circle cx="516" cy="158" r="6" fill="#7FBC90"/><rect x="555" y="149" width="495" height="19" rx="9" fill="#8A8A8A" opacity=".11"/>
+<text x="478" y="234" fill="#4C3A2E" font-size="26" font-family="Noto Sans TC,Arial,sans-serif" font-weight="700">天喜の記憶</text>
+<text x="479" y="267" fill="#4C3A2E" opacity=".7" font-size="14" font-family="Arial,sans-serif" letter-spacing="1">BRAND MEMORY ARCHIVE</text>
+<rect x="482" y="325" width="147" height="14" rx="7" fill="#AA755C" opacity=".7"/><rect x="482" y="355" width="191" height="9" rx="4" fill="#AA755C" opacity=".32"/><rect x="482" y="377" width="162" height="9" rx="4" fill="#AA755C" opacity=".25"/><rect x="482" y="419" width="163" height="43" rx="10" fill="#AA755C"/><rect x="484" y="500" width="666" height="1" fill="#AA755C" opacity=".4"/>
+<g opacity=".9"><rect x="706" y="254" width="292" height="218" rx="9" fill="#D9C2A5" transform="rotate(-5 850 363)"/><rect x="723" y="264" width="258" height="179" rx="4" fill="#F5EFE1"/><path d="M725 399 Q784 321 848 360 T980 340 V443 H723Z" fill="#A4AD9B"/><path d="M733 408 Q808 360 867 407 T980 385 V443 H723Z" fill="#C5A8A0"/><circle cx="916" cy="318" r="23" fill="#E8D6B0"/><g opacity=".9"><circle cx="1029" cy="285" r="12" fill="#E7ACAE"/><circle cx="1046" cy="271" r="8" fill="#F4DFD9"/><circle cx="1032" cy="265" r="8" fill="#ECD4CF"/></g></g>
+<text x="82" y="625" fill="#48362B" font-size="16" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2">BERTFOLIO   /   SELECTED WORK</text>
+<text x="82" y="655" fill="#48362B" font-size="12" font-family="Arial,sans-serif" opacity=".8" letter-spacing="1.5">CONCEPT COVER · NOT A LIVE SITE SCREENSHOT</text>
+</svg>

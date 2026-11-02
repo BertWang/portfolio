@@ -672,9 +672,9 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="aspect-video bg-gradient-to-br from-[#8B7355] to-[#A0826D] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">天喜の記憶</span>
-              </div>
+              <div className="aspect-video overflow-hidden bg-[#EAE4DB]">
+                 <img src="/images/covers/skylark.svg" alt="天喜の記憶 的專案概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-[#8B7355] mb-2">天喜の記憶 (Skylark)</h3>
                 <p className="text-gray-600 mb-4">品牌記憶庫 | 1990-2014 歷史保存</p>
@@ -692,9 +692,9 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="aspect-video bg-gradient-to-br from-[#8B7355] to-[#6B5344] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">所以咖啡</span>
-              </div>
+              <div className="aspect-video overflow-hidden bg-[#EAE4DB]">
+                 <img src="/images/covers/soyui.svg" alt="所以咖啡 的專案概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-[#8B7355] mb-2">所以咖啡</h3>
                 <p className="text-gray-600 mb-4">精品咖啡品牌 | 職人精神展現</p>
@@ -712,9 +712,9 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="aspect-video bg-gradient-to-br from-[#DC143C] to-[#FF6347] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">強匠鎖店</span>
-              </div>
+              <div className="aspect-video overflow-hidden bg-[#EAE4DB]">
+                 <img src="/images/covers/openlock.svg" alt="強匠鎖店 的專案概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-[#8B7355] mb-2">強匠鎖店</h3>
                 <p className="text-gray-600 mb-4">24H 緊急開鎖 | 信任承諾</p>
@@ -732,9 +732,9 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all"
             >
-              <div className="aspect-video bg-gradient-to-br from-[#6B4423] to-[#8B6F47] flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">溫ㄟ宅修</span>
-              </div>
+              <div className="aspect-video overflow-hidden bg-[#EAE4DB]">
+                 <img src="/images/covers/wenwei.svg" alt="溫ㄟ宅修 的專案概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-[#8B7355] mb-2">溫ㄟ宅修</h3>
                 <p className="text-gray-600 mb-4">居家修繕 | 生活溫度</p>
@@ -755,6 +755,39 @@ export default function Home() {
               {content.projectsCTA}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 自主數位產品：與客戶作品分開展示 */}
+      <section id="independent-products" className="py-16 md:py-24 bg-white border-t border-gray-200">
+        <div className="container px-4">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-sm font-semibold text-[#8B7355] tracking-[0.16em] mb-3">INDEPENDENT PRODUCTS</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {activeRegion === 'tw' ? '自主數位產品' : activeRegion === 'jp' ? '自主開発デジタルプロダクト' : 'Produk Digital Independen'}
+            </h2>
+            <p className="text-gray-600 mb-9 leading-relaxed">
+              {activeRegion === 'tw' ? '從客製化設計延伸至自有數位產品，結合視覺、內容與技術開發。' : activeRegion === 'jp' ? '受託制作から自主プロダクトへ。デザイン、コンテンツ、技術を統合します。' : 'Dari desain khusus menuju produk digital milik sendiri.'}
+            </p>
+            <article className="grid md:grid-cols-2 rounded-xl overflow-hidden border border-[#E7E0D7] bg-[#F8F5F0] shadow-sm">
+              <div className="aspect-video md:aspect-auto md:min-h-[300px] bg-[#16243B] overflow-hidden">
+                <img src="/images/covers/astrolys.svg" alt="ASTROLYS 跨文化命理數位產品概念視覺（非實際網站截圖）" loading="lazy" decoding="async" width="1280" height="720" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-8 md:p-10 flex flex-col justify-center">
+                <p className="text-xs font-bold text-[#8B7355] tracking-widest mb-3">PRODUCT DESIGN · DEVELOPMENT</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">ASTROLYS</h3>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  {activeRegion === 'tw' ? '面向國際市場的跨文化命理數位產品計畫，探索多語系內容、互動體驗與數位報告系統。' : activeRegion === 'jp' ? '国際市場を目指し、多言語体験とデジタルレポートを探求する自主プロダクト。' : 'Produk digital lintas budaya untuk pasar internasional, dengan pengalaman multibahasa dan sistem laporan digital.'}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  <span className="text-xs px-3 py-1.5 rounded-full bg-white border border-[#E3D8CA]">UI/UX</span>
+                  <span className="text-xs px-3 py-1.5 rounded-full bg-white border border-[#E3D8CA]">Multilingual</span>
+                  <span className="text-xs px-3 py-1.5 rounded-full bg-white border border-[#E3D8CA]">Digital Product</span>
+                </div>
+                <p className="text-sm text-gray-500">{activeRegion === 'tw' ? '獨立開發 · 持續迭代中' : activeRegion === 'jp' ? '自主開発 · 継続改善中' : 'Pengembangan mandiri · Sedang berlangsung'}</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>

@@ -21,6 +21,16 @@ export default function Home() {
     hideLoading();
   }, [language, languageCode, hideLoading]);
 
+  // A direct /tw/#contact visit may mount the page after the browser
+  // attempted the initial hash scroll. Retry once the section exists.
+  useEffect(() => {
+    if (window.location.hash !== "#contact") return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById("contact")?.scrollIntoView({ block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [location]);
+
   const [activeRegion, setActiveRegion] = useState(language);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

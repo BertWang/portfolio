@@ -8,6 +8,7 @@ import { and, desc, eq } from "drizzle-orm";
 import { blogPosts } from "../../drizzle/schema";
 import { getDb } from "../db";
 import { renderBlogListHtml, renderBlogPostHtml, renderBlogUnavailableHtml } from "./blogSeo";
+import { renderPublishedSitemap } from "./sitemap";
 import viteConfig from "../../vite.config";
 
 export async function setupVite(app: Express, server: Server) {
@@ -66,6 +67,37 @@ export function serveStatic(app: Express) {
   // This does not require an external prerendering service or Manus AI credits.
   // Route this before static SPA fallback so non-JS crawlers get the correct title.
   const templatePath = path.resolve(distPath, "index.html");
+  app.get("/sitemap.xml", async (_req, res) => {
+    let staticXml: string;
+    try {
+      staticXml = await fs.promises.readFile(path.resolve(distPath, "sitemap.xml"), "utf-8");
+    } catch (error) {
+      console.error("[Sitemap] Static sitemap unavailable:", error);
+      res.status(503).type("text/plain").send("Sitemap temporarily unavailable");
+      return;
+    }
+
+    try {
+      const db = await getDb();
+      if (!db) throw new Error("No database configured");
+      const posts = await db.select({
+        slug: blogPosts.slug,
+        publishedAt: blogPosts.publishedAt,
+        isPublished: blogPosts.isPublished,
+      }).from(blogPosts)
+        .where(eq(blogPosts.isPublished, true))
+        .orderBy(desc(blogPosts.publishedAt))
+        .limit(49_990);
+      res.setHeader("Cache-Control", "public, max-age=300");
+      res.type("application/xml").send(renderPublishedSitemap(staticXml, posts));
+    } catch (error) {
+      // Homepage routes remain valid even when the blog database is down.
+      console.warn("[Sitemap] Serving verified static routes only:", error);
+      res.setHeader("Cache-Control", "public, max-age=60");
+      res.type("application/xml").send(staticXml);
+    }
+  });
+
   app.get("/blog", async (_req, res) => {
     const template = await fs.promises.readFile(templatePath, "utf-8");
     try {

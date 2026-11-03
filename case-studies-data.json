@@ -18,11 +18,16 @@
     "resultsJp": "各パッケージデザイン、各色選択は、台南の物語を語っています。ブランドは文化保存の一形態となり、同時に製品の市場認知度と売上を向上させました。",
     "resultsMy": "Setiap desain kemasan, setiap pilihan warna menceritakan kisah Tainan. Merek menjadi bentuk pelestarian budaya sambil meningkatkan kesadaran pasar dan penjualan produk.",
     "projectCategory": "品牌設計",
-    "technologies": ["品牌策略", "視覺識別", "包裝設計", "文化保存"],
+    "technologies": [
+      "品牌策略",
+      "視覺識別",
+      "包裝設計",
+      "文化保存"
+    ],
     "clientName": "天喜蝦餅",
     "completionDate": "2022-06-15",
     "featuredImageUrl": "https://example.com/case-studies/tian-xi.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   },
@@ -45,11 +50,16 @@
     "resultsJp": "伝統を尊重しながらも、現代的な感覚に満ちたブランド。客流が35%増加し、顧客の平均滞在時間が45%増加し、ソーシャルメディアフォロワーが200%増加しました。",
     "resultsMy": "Merek yang menghormati tradisi sambil penuh dengan rasa modern. Arus pelanggan meningkat 35%, waktu tinggal rata-rata pelanggan meningkat 45%, pengikut media sosial meningkat 200%.",
     "projectCategory": "品牌設計",
-    "technologies": ["品牌策略", "視覺識別", "空間設計", "社交媒體策略"],
+    "technologies": [
+      "品牌策略",
+      "視覺識別",
+      "空間設計",
+      "社交媒體策略"
+    ],
     "clientName": "SOYUI COFFEE",
     "completionDate": "2023-03-20",
     "featuredImageUrl": "https://example.com/case-studies/soyui-coffee.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   },
@@ -72,11 +82,16 @@
     "resultsJp": "顧客の問い合わせが40%増加し、平均注文額が25%増加しました。高級顧客を引き付け始め、これらの顧客は品質と工芸に対してより高い価格を支払う意思があります。ブランドは台南工芸の代表となりました。",
     "resultsMy": "Pertanyaan pelanggan meningkat 40%, nilai pesanan rata-rata meningkat 25%. Mulai menarik pelanggan premium yang bersedia membayar harga lebih tinggi untuk kualitas dan kerajinan. Merek menjadi perwakilan kerajinan Tainan.",
     "projectCategory": "品牌重塑",
-    "technologies": ["品牌策略", "視覺識別", "網站設計", "行銷策略"],
+    "technologies": [
+      "品牌策略",
+      "視覺識別",
+      "網站設計",
+      "行銷策略"
+    ],
     "clientName": "強匠鎖店",
     "completionDate": "2021-09-10",
     "featuredImageUrl": "https://example.com/case-studies/openlock.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   },
@@ -99,11 +114,16 @@
     "resultsJp": "顧客の信頼が向上し、リピート顧客率が60%増加しました。ソーシャルメディアと口コミの紹介を通じて、新規顧客獲得コストが45%削減されました。ブランドはコミュニティが信頼する修理サービスの代表となりました。",
     "resultsMy": "Kepercayaan pelanggan meningkat, tingkat pelanggan berulang meningkat 60%. Melalui media sosial dan rekomendasi dari mulut ke mulut, biaya akuisisi pelanggan baru berkurang 45%. Merek menjadi perwakilan layanan perbaikan yang dipercaya komunitas.",
     "projectCategory": "品牌設計",
-    "technologies": ["品牌策略", "視覺識別", "社交媒體設計", "社區行銷"],
+    "technologies": [
+      "品牌策略",
+      "視覺識別",
+      "社交媒體設計",
+      "社區行銷"
+    ],
     "clientName": "溫ㄟ宅修",
     "completionDate": "2023-11-05",
     "featuredImageUrl": "https://example.com/case-studies/wen-ai.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   },
@@ -126,11 +146,16 @@
     "resultsJp": "ドキュメンタリーは複数の国際映画祭で受賞し、環境生態特別賞を受賞しました。上映と教育活動を通じて、若い世代の台南牡蠣農家文化への認識を高めました。文化保存の重要なケースとなりました。",
     "resultsMy": "Dokumenter memenangkan penghargaan di beberapa festival film internasional dan menerima Penghargaan Khusus Ekologi Lingkungan. Melalui pemutaran dan kegiatan pendidikan, meningkatkan kesadaran generasi muda tentang budaya petani tiram Tainan. Menjadi kasus penting pelestarian budaya.",
     "projectCategory": "紀錄片製作",
-    "technologies": ["影像製作", "敘事設計", "文化保存", "視覺設計"],
+    "technologies": [
+      "影像製作",
+      "敘事設計",
+      "文化保存",
+      "視覺設計"
+    ],
     "clientName": "台南文化局",
     "completionDate": "2020-12-15",
     "featuredImageUrl": "https://example.com/case-studies/nan-o-dream.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   },
@@ -153,11 +178,16 @@
     "resultsJp": "ドキュメンタリーは神腦ドキュメンタリー競賽社会部門で優秀賞を受賞しました。上映と討論会を通じて、社会が関連する問題について考えるきっかけになりました。デザイナーの社会的責任の重要なケースとなりました。",
     "resultsMy": "Dokumenter memenangkan Penghargaan Keunggulan di Kompetisi Dokumenter Sinbrain Kategori Sosial. Melalui pemutaran dan diskusi, memicu pemikiran masyarakat tentang masalah terkait. Menjadi kasus penting tanggung jawab sosial desainer.",
     "projectCategory": "紀錄片製作",
-    "technologies": ["影像製作", "敘事設計", "社會責任", "視覺設計"],
+    "technologies": [
+      "影像製作",
+      "敘事設計",
+      "社會責任",
+      "視覺設計"
+    ],
     "clientName": "獨立製作",
     "completionDate": "2019-05-20",
     "featuredImageUrl": "https://example.com/case-studies/geese-cannot-fly.jpg",
-    "isPublished": true,
+    "isPublished": false,
     "createdAt": "2026-06-02T00:00:00Z",
     "updatedAt": "2026-06-02T00:00:00Z"
   }

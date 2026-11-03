@@ -164,56 +164,18 @@ async function seedBlogPosts(connection) {
 }
 
 async function seedCaseStudies(connection) {
-  if (caseStudiesData.length === 0) {
-    console.log('⊘ 無案例研究數據可導入\n');
+  // This repository's case studies are review-only fixtures. Their image URLs
+  // and claims are not verified, and the old SQL does not match drizzle/schema.ts.
+  const requested = caseStudiesData.filter(study => study.isPublished === true);
+  if (requested.length === 0) {
+    console.log('⊘ 案例仍待內容與圖片核實，略過案例匯入。');
     return;
   }
-
-  console.log('🌱 開始導入案例研究...\n');
-  
-  try {
-    for (const study of caseStudiesData) {
-      // 檢查是否已存在
-      const [existing] = await connection.execute(
-        'SELECT id FROM caseStudies WHERE slug = ?',
-        [study.slug]
-      );
-      
-      if (existing.length === 0) {
-        await connection.execute(
-          `INSERT INTO caseStudies (
-            titleTw, titleJp, titleMy, slug,
-            excerptTw, excerptJp, excerptMy,
-            challengeTw, challengeJp, challengeMy,
-            solutionTw, solutionJp, solutionMy,
-            resultTw, resultJp, resultMy,
-            techStackTw, techStackJp, techStackMy,
-            categoryTw, categoryJp, categoryMy,
-            authorName, viewCount, isPublished, publishedAt, createdAt, updatedAt
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [
-            study.titleTw, study.titleJp, study.titleMy, study.slug,
-            study.excerptTw, study.excerptJp, study.excerptMy,
-            study.challengeTw, study.challengeJp, study.challengeMy,
-            study.solutionTw, study.solutionJp, study.solutionMy,
-            study.resultTw, study.resultJp, study.resultMy,
-            study.techStackTw, study.techStackJp, study.techStackMy,
-            study.categoryTw, study.categoryJp, study.categoryMy,
-            study.authorName, study.viewCount, study.isPublished,
-            study.publishedAt, study.createdAt, study.updatedAt
-          ]
-        );
-        console.log(`✓ 已導入：${study.titleTw}`);
-      } else {
-        console.log(`⊘ 已存在：${study.titleTw}`);
-      }
-    }
-    
-    console.log('\n✅ 案例研究導入完成！\n');
-  } catch (error) {
-    console.error('❌ 案例研究導入失敗：', error);
-    throw error;
-  }
+  // Do not write partially valid data into production; implement a reviewed
+  // import matching the current case_studies schema before enabling this.
+  throw new Error(
+    '案例匯入已暫停：請先核實案例內容、圖片及 case_studies 欄位對應，再實作匯入。'
+  );
 }
 
 async function main() {

@@ -18,7 +18,7 @@ Website-Description: 18年台南網頁設計與PHP開發經驗。專精於品牌
 # Owner Information
 Owner-Name: 王純瑋 (Bert Wang)
 Owner-Title: 網頁設計師 / Web Designer
-Owner-Email: contact@bertfolio.com
+Owner-Email: weblink1982@gmail.com
 Owner-Location: Tainan, Taiwan
 
 # Content Categories

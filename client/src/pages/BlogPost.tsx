@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft, Calendar, Tag, Share2, Copy, Check } from 'lucide-react';
@@ -25,14 +24,13 @@ const ArticleContent = ({ content }: { content: string }) => {
 };
 
 export default function BlogPost() {
-  const { user } = useAuth();
-  const [match, params] = useRoute('/blog/:slug');
+  const [, params] = useRoute('/blog/:slug');
   const [copied, setCopied] = useState(false);
 
   const slug = params?.slug as string;
 
   // 從 tRPC 獲取文章詳情（使用 5 分鐘緩存）
-  const { data: post, isLoading: postLoading } = trpc.blog.postBySlug.useQuery(
+  const { data: post, isLoading: postLoading, isError: postError, error: postQueryError, refetch: refetchPost } = trpc.blog.postBySlug.useQuery(
     { slug },
     { 
       enabled: !!slug,
@@ -102,6 +100,20 @@ export default function BlogPost() {
             <div className="h-10 bg-slate-200 rounded animate-pulse" />
             <div className="h-96 bg-slate-200 rounded animate-pulse" />
             <div className="h-64 bg-slate-200 rounded animate-pulse" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (postError && postQueryError?.data?.code !== 'NOT_FOUND') {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="container py-12">
+          <div className="max-w-3xl mx-auto text-center" role="alert">
+            <h1 className="text-3xl font-bold mb-4">文章暫時無法讀取</h1>
+            <p className="text-slate-600 mb-6">連線發生問題，請稍後重試。</p>
+            <Button onClick={() => void refetchPost()}>重新載入</Button>
           </div>
         </div>
       </div>
@@ -321,7 +333,9 @@ export default function BlogPost() {
             <p className="text-slate-600 mb-6">
               如果您對本文內容感興趣，歡迎與我聯繫討論您的網頁設計或品牌策略需求。
             </p>
-            <Button size="lg">立即咨詢</Button>
+            <a href="/tw/#contact" className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#8B7355] text-white font-semibold hover:bg-[#7A6347] transition-colors">
+              撰寫合作 Email
+            </a>
           </div>
         </div>
       </div>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Bertfolio">
+<title>Bertfolio</title>
+<rect width="64" height="64" rx="14" fill="#8B7355"/>
+<path d="M22 12H37C45 12 48 19 48 25C48 30 46 34 42 36C47 37 50 41 50 47C50 54 45 59 37 59H22V12ZM30 20V32H36C39 32 41 29 41 26C41 22 39 20 36 20H30ZM30 40V51H37C40 51 42 49 42 46C42 42 40 40 37 40H30Z" fill="#FFF8F0"/>
+</svg>

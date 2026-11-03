@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight, BookOpen } from 'lucide-react';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { getLanguageFromPath, getLanguageCode, seoConfigs, updateSEOHead } from '@/lib/seoConfig';
 import { useLoading } from '@/contexts/LoadingContext';
 
 export default function Home() {
-  // The userAuth hooks provides authentication state
-  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
   const [location] = useLocation();
   const language = getLanguageFromPath(location);
   const languageCode = getLanguageCode(language);
@@ -27,7 +23,6 @@ export default function Home() {
 
   const [activeRegion, setActiveRegion] = useState(language);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const regionContent = {
     tw: {
@@ -61,17 +56,11 @@ export default function Home() {
       projectsCTA: '了解我的工作方式',
       documentaries: '代表紀錄片',
       contact: '立即咨詢',
-      consultationTitle: '開始您的項目',
-      consultationDesc: '告訴我您的需求，我會為您提供最適合的解決方案',
-      consultationName: '您的名稱',
-      consultationEmail: '您的郵箱',
-      consultationService: '服務類型',
-      consultationMessage: '簡短說明您的需求',
-      consultationSubmit: '立即提交咨詢',
-      serviceOptions: ['網頁設計', 'PHP 開發', '品牌設計', '影像創作', 'SEO 優化', '其他'],
+      consultationTitle: 'Email 合作洽詢',
+      consultationDesc: '歡迎以電子郵件說明合作需求，直接寄到我的信箱。',
+      consultationSubmit: '撰寫合作 Email',
       skillsCTA: '開始您的項目',
       contactCall: '立即來電',
-      contactEmail: 'EMAIL咨詢',
       civicTitle: '用設計與影像，為台灣的故事發聲',
       civicSubtitle: '不只是製作網站，更是透過紀錄片、影像創作與公民參與，守護文化記憶、實踐社會責任',
       civicMainText: '18 年來，我用代碼和設計為品牌創造溫度。但我也相信，設計的力量不只在於商業，更在於能否為社會議題發聲。',
@@ -155,17 +144,11 @@ export default function Home() {
       projectsCTA: 'Learn About My Work',
       documentaries: 'Representative Documentaries',
       contact: 'Consult Now',
-      consultationTitle: 'Start Your Project',
-      consultationDesc: 'Tell me your needs and I will provide the best solution for you',
-      consultationName: 'Your Name',
-      consultationEmail: 'Your Email',
-      consultationService: 'Service Type',
-      consultationMessage: 'Brief description of your needs',
-      consultationSubmit: 'Submit Inquiry Now',
-      serviceOptions: ['Web Design', 'PHP Development', 'Brand Design', 'Video Creation', 'SEO Optimization', 'Other'],
+      consultationTitle: 'メールでお問い合わせ',
+      consultationDesc: 'ご相談内容やコラボレーションのご提案は、メールでお知らせください。',
+      consultationSubmit: 'メールを作成',
       skillsCTA: 'Start Your Project',
       contactCall: 'Call Now',
-      contactEmail: 'Email Inquiry',
       civicTitle: 'デザインと映像で、台湾の物語を発信する',
       civicSubtitle: 'ウェブサイト制作だけでなく、ドキュメンタリー、映像制作、市民参加を通じて、文化的記憶を守り、社会的責任を実践する',
       civicMainText: '18 年間、私はコードとデザインでブランドに温かみを与えてきました。しかし、デザインの力は商業だけではなく、社会的課題に声を上げることができるはずです。',
@@ -249,17 +232,11 @@ export default function Home() {
       projectsCTA: 'Pelajari Cara Kerja Saya',
       documentaries: 'Dokumenter Perwakilan',
       contact: 'Konsultasi Sekarang',
-      consultationTitle: 'Mulai Proyek Anda',
-      consultationDesc: 'Beri tahu saya kebutuhan Anda dan saya akan memberikan solusi terbaik',
-      consultationName: 'Nama Anda',
-      consultationEmail: 'Email Anda',
-      consultationService: 'Jenis Layanan',
-      consultationMessage: 'Deskripsi singkat tentang kebutuhan Anda',
-      consultationSubmit: 'Kirim Konsultasi Sekarang',
-      serviceOptions: ['Desain Web', 'Pengembangan PHP', 'Desain Merek', 'Kreasi Video', 'Optimasi SEO', 'Lainnya'],
+      consultationTitle: 'Hubungi melalui Email',
+      consultationDesc: 'Silakan kirim email untuk menjelaskan kebutuhan atau rencana kerja sama Anda.',
+      consultationSubmit: 'Tulis Email',
       skillsCTA: 'Mulai Proyek Anda',
       contactCall: 'Hubungi Sekarang',
-      contactEmail: 'Konsultasi Email',
       civicTitle: 'Reka Bentuk dan Video: Memberi Suara kepada Cerita Malaysia',
       civicSubtitle: 'Melampaui desain web, saya melestarikan memori budaya dan mempraktikkan tanggung jawab sosial melalui dokumenter, produksi video, dan partisipasi sipil.',
       civicMainText: 'Selama 18 tahun, saya telah menggunakan kode dan desain untuk membawa kehangatan ke merek. Tetapi saya percaya bahwa kekuatan desain melampaui perdagangan—dapat memperkuat suara sosial dan mendorong perubahan.',
@@ -316,13 +293,20 @@ export default function Home() {
 
   const content = regionContent[activeRegion as keyof typeof regionContent];
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 3000);
-    // Show loading briefly during form submission
-    // In a real app, this would be triggered by actual API calls
-  };
+  // Use the visitor's mail application, without a server-side form service.
+  const contactEmailHref = `mailto:weblink1982@gmail.com?subject=${encodeURIComponent(
+    activeRegion === 'tw'
+      ? 'Bertfolio｜合作洽詢'
+      : activeRegion === 'jp'
+        ? 'Bertfolio｜お問い合わせ'
+        : 'Bertfolio | Pertanyaan Kerja Sama'
+  )}&body=${encodeURIComponent(
+    activeRegion === 'tw'
+      ? '您好，我想詢問合作事項。\n\n合作需求：\n預算範圍：\n預計時程：\n'
+      : activeRegion === 'jp'
+        ? 'こんにちは。協業について相談したいです。\n\nご相談内容：\nご予算：\n希望時期：\n'
+        : 'Halo, saya ingin bertanya tentang kerja sama.\n\nKebutuhan proyek:\nPerkiraan anggaran:\nJadwal:\n'
+  )}`;
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
@@ -644,13 +628,7 @@ export default function Home() {
             <h3 className="text-2xl md:text-3xl font-bold mb-4">{content.civicCTA}</h3>
             <p className="text-lg mb-8 opacity-90">{content.civicCTADesc}</p>
             <button
-              onClick={() => {
-                const element = document.getElementById('consultation');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                  setFormSubmitted(false);
-                }
-              }}
+              onClick={scrollToContact}
               className="bg-white text-[#8B7355] px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
             >
               {content.civicCTA} <ArrowRight className="ml-2 w-4 h-4" />
@@ -833,92 +811,49 @@ export default function Home() {
               <p className="text-lg text-gray-600">{content.consultationDesc}</p>
             </div>
 
-            <form onSubmit={handleFormSubmit} className="bg-white rounded-lg shadow-lg p-8 space-y-6">
-              {/* 名稱 */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationName}</label>
-                <input
-                  type="text"
-                  placeholder="請輸入您的名稱"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
-                  required
-                />
+            {/* 原本的表單未實際送出資料；改用不需付費後端的電子郵件聯絡 */}
+            <div className="bg-white rounded-lg shadow-lg p-8 md:p-10 text-center">
+              <div className="w-16 h-16 rounded-full bg-[#F5F0E9] mx-auto mb-6 flex items-center justify-center">
+                <Mail size={30} className="text-[#8B7355]" />
               </div>
-
-              {/* 郵箱 */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationEmail}</label>
-                <input
-                  type="email"
-                  placeholder="請輸入您的郵箱"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
-                  required
-                />
-              </div>
-
-              {/* 服務類型 */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationService}</label>
-                <select
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent"
-                  required
-                >
-                  <option value="">-- 請選擇服務類型 --</option>
-                  {content.serviceOptions.map((option) => (
-                    <option key={option} value={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* 需求說明 */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{content.consultationMessage}</label>
-                <textarea
-                  placeholder="請簡短說明您的需求..."
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent resize-none"
-                  required
-                />
-              </div>
-
-              {/* 提交按鈕 */}
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#8B7355] hover:bg-[#7A6347] text-white font-semibold rounded-lg transition-all"
+              <p className="text-sm font-semibold text-gray-500 tracking-widest mb-3">EMAIL</p>
+              <a
+                href={contactEmailHref}
+                className="inline-block text-lg md:text-2xl font-semibold text-[#8B7355] underline underline-offset-4 decoration-[#D8C9B7] hover:text-[#6B5344] break-all"
               >
-                <Send size={20} />
+                weblink1982@gmail.com
+              </a>
+              <p className="text-gray-600 text-sm mt-4 mb-8 leading-relaxed">
+                {activeRegion === 'tw'
+                  ? '可簡單提供合作需求、預算範圍及預計時程，減少來回確認。'
+                  : activeRegion === 'jp'
+                    ? 'ご相談内容、ご予算、希望時期を記載いただくと、やり取りがスムーズです。'
+                    : 'Sertakan kebutuhan proyek, perkiraan anggaran, dan jadwal yang diharapkan.'}
+              </p>
+              <a
+                href={contactEmailHref}
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-[#8B7355] hover:bg-[#7A6347] text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+              >
+                <Mail size={20} />
                 {content.consultationSubmit}
-              </button>
+              </a>
+              <p className="text-xs text-gray-500 mt-5 leading-relaxed">
+                {activeRegion === 'tw'
+                  ? '點擊會開啟您裝置上的郵件程式，請自行確認並寄出；本站不會自動傳送訊息。'
+                  : activeRegion === 'jp'
+                    ? 'メールアプリが開きます。送信はご自身で行ってください。サイトから自動送信はされません。'
+                    : 'Aplikasi email Anda akan terbuka. Harap periksa dan kirim pesan sendiri; situs ini tidak mengirim otomatis.'}
+              </p>
+            </div>
 
-              {/* 成功提示 */}
-              {formSubmitted && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-center">
-                  ✓ 感謝您的咨詢，我們會盡快與您聯絡！
-                </div>
-              )}
-            </form>
-
-            {/* 直接聯絡方式 */}
-            <div className="mt-12 grid md:grid-cols-2 gap-6">
+            {/* 保留原有電話作為次要聯絡方式 */}
+            <div className="mt-8 text-center">
               <a
                 href="tel:0901404663"
-                className="flex items-center gap-4 p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all"
+                className="inline-flex items-center justify-center gap-2 text-gray-600 hover:text-[#8B7355] transition-colors"
               >
-                <Phone size={32} className="text-[#8B7355] flex-shrink-0" />
-                <div>
-                  <p className="text-sm text-gray-600">{content.contactCall}</p>
-                  <p className="text-lg font-semibold text-gray-900">0901-404-663</p>
-                </div>
-              </a>
-              <a
-                href="mailto:weblink1982@gmail.com?subject=合作咨詢"
-                className="flex items-center gap-4 p-6 bg-white rounded-lg shadow hover:shadow-lg transition-all"
-              >
-                <Mail size={32} className="text-[#8B7355] flex-shrink-0" />
-                <div>
-                  <p className="text-sm text-gray-600">{content.contactEmail}</p>
-                  <p className="text-lg font-semibold text-gray-900">weblink1982@gmail.com</p>
-                </div>
+                <Phone size={18} />
+                <span>{content.contactCall}：0901-404-663</span>
               </a>
             </div>
           </div>

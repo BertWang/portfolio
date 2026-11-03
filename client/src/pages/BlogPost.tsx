@@ -30,7 +30,7 @@ export default function BlogPost() {
   const slug = params?.slug as string;
 
   // 從 tRPC 獲取文章詳情（使用 5 分鐘緩存）
-  const { data: post, isLoading: postLoading, isError: postError, refetch: refetchPost } = trpc.blog.postBySlug.useQuery(
+  const { data: post, isLoading: postLoading, isError: postError, error: postQueryError, refetch: refetchPost } = trpc.blog.postBySlug.useQuery(
     { slug },
     { 
       enabled: !!slug,
@@ -106,7 +106,7 @@ export default function BlogPost() {
     );
   }
 
-  if (postError) {
+  if (postError && postQueryError?.data?.code !== 'NOT_FOUND') {
     return (
       <div className="min-h-screen bg-background">
         <div className="container py-12">

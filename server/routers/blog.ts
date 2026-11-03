@@ -8,7 +8,7 @@ import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { getDb } from '../db';
 import { blogPosts, caseStudies } from '../../drizzle/schema';
-import { eq, and, desc, asc, count } from 'drizzle-orm';
+import { eq, and, desc, asc, count, like, or } from 'drizzle-orm';
 
 /**
  * Get blog posts with pagination and filtering
@@ -21,19 +21,36 @@ export const getBlogPostsRouter = publicProcedure
       category: z.string().optional(),
       sortBy: z.enum(['newest', 'oldest', 'popular']).default('newest'),
       language: z.enum(['tw', 'jp', 'my']).default('tw'),
+      search: z.string().trim().min(1).max(80).optional(),
     })
   )
   .query(async ({ input }) => {
     const db = await getDb();
     if (!db) throw new Error('Database not available');
 
-    const { page, limit, category, sortBy, language } = input;
+    const { page, limit, category, sortBy, language, search } = input;
     const offset = (page - 1) * limit;
 
     // Build where conditions
     let whereConditions = [eq(blogPosts.isPublished, true)];
     if (category) {
       whereConditions.push(eq(blogPosts.category, category));
+    }
+    if (search) {
+      // Only published posts are searchable. Escape LIKE wildcard characters
+      // so a visitor's percent or underscore is treated as literal text.
+      const term = search.replace(/[\\%_]/g, "\\    if (category) {
+      whereConditions.push(eq(blogPosts.category, category));
+    }
+
+    // Build query with sorting");
+      const columns = language === 'jp'
+        ? [blogPosts.titleJp, blogPosts.excerptJp, blogPosts.titleTw, blogPosts.excerptTw]
+        : language === 'my'
+          ? [blogPosts.titleMy, blogPosts.excerptMy, blogPosts.titleTw, blogPosts.excerptTw]
+          : [blogPosts.titleTw, blogPosts.excerptTw];
+      const searchCondition = or(...columns.map(column => like(column, `%${term}%`)));
+      if (searchCondition) whereConditions.push(searchCondition);
     }
 
     // Build query with sorting
@@ -128,12 +145,16 @@ export const getCaseStudiesRouter = publicProcedure
 
     // Execute query with pagination
     const studies = await query.limit(limit).offset(offset);
+    const [countRow] = await db
+      .select({ total: count() })
+      .from(caseStudies)
+      .where(and(...whereConditions));
 
     return {
       studies,
       page,
       limit,
-      total: studies.length,
+      total: countRow?.total ?? 0,
     };
   });
 

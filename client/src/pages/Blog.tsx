@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowRight, Calendar, Tag } from 'lucide-react';
@@ -11,13 +10,12 @@ import { BlogSearch } from '@/components/BlogSearch';
 import { trpc } from '@/lib/trpc';
 
 export default function Blog() {
-  const { user } = useAuth();
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState<string | undefined>();
   const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'popular'>('newest');
 
   // 從 tRPC 獲取博客文章
-  const { data: postsData, isLoading } = trpc.blog.posts.useQuery({
+  const { data: postsData, isLoading, isError, refetch } = trpc.blog.posts.useQuery({
     page,
     limit: 12,
     category,
@@ -67,21 +65,21 @@ export default function Blog() {
             <div className="flex gap-2 flex-wrap">
               <Button
                 variant={sortBy === 'newest' ? 'default' : 'outline'}
-                onClick={() => setSortBy('newest')}
+                onClick={() => { setSortBy('newest'); setPage(1); }}
                 size="sm"
               >
                 最新發佈
               </Button>
               <Button
                 variant={sortBy === 'oldest' ? 'default' : 'outline'}
-                onClick={() => setSortBy('oldest')}
+                onClick={() => { setSortBy('oldest'); setPage(1); }}
                 size="sm"
               >
                 最舊發佈
               </Button>
               <Button
                 variant={sortBy === 'popular' ? 'default' : 'outline'}
-                onClick={() => setSortBy('popular')}
+                onClick={() => { setSortBy('popular'); setPage(1); }}
                 size="sm"
               >
                 最受歡迎
@@ -92,7 +90,7 @@ export default function Blog() {
             <div className="flex gap-2 flex-wrap">
               <Button
                 variant={category === undefined ? 'default' : 'outline'}
-                onClick={() => setCategory(undefined)}
+                onClick={() => { setCategory(undefined); setPage(1); }}
                 size="sm"
               >
                 全部分類
@@ -101,7 +99,7 @@ export default function Blog() {
                 <Button
                   key={cat}
                   variant={category === cat ? 'default' : 'outline'}
-                  onClick={() => setCategory(cat)}
+                  onClick={() => { setCategory(cat); setPage(1); }}
                   size="sm"
                 >
                   {cat}
@@ -119,6 +117,11 @@ export default function Blog() {
             {[...Array(6)].map((_, i) => (
               <Card key={i} className="h-96 bg-slate-100 animate-pulse" />
             ))}
+          </div>
+        ) : isError ? (
+          <div className="text-center py-12" role="alert">
+            <p className="text-slate-700 mb-4">文章目前無法讀取，請稍後再試。</p>
+            <Button onClick={() => void refetch()}>重新載入</Button>
           </div>
         ) : postsData?.posts && postsData.posts.length > 0 ? (
           <>
@@ -203,7 +206,7 @@ export default function Blog() {
                 <Button
                   variant="outline"
                   onClick={() => setPage(page + 1)}
-                  disabled={postsData.posts.length < 12}
+                  disabled={page * 12 >= postsData.total}
                 >
                   下一頁
                 </Button>

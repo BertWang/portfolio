@@ -4,6 +4,7 @@
  */
 
 import { publicProcedure } from '../_core/trpc';
+import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { getDb } from '../db';
 import { blogPosts, caseStudies } from '../../drizzle/schema';
@@ -78,7 +79,7 @@ export const getBlogPostBySlugRouter = publicProcedure
       .limit(1);
 
     if (posts.length === 0) {
-      throw new Error('Blog post not found');
+      throw new TRPCError({ code: 'NOT_FOUND', message: 'Blog post not found' });
     }
 
     // 異步更新 viewCount（不阻塞查詢返回）

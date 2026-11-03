@@ -127,11 +127,7 @@ export default function BlogPost() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl font-bold mb-4">文章未找到</h1>
             <p className="text-slate-600 mb-6">抱歉，我們找不到您要查看的文章。</p>
-            <Link href="/blog">
-              <a>
-                <Button>返回部落格</Button>
-              </a>
-            </Link>
+            <Link href="/blog" className="inline-flex items-center rounded-md bg-[#8B7355] px-4 py-2 font-medium text-white hover:bg-[#7A6347]">返回部落格</Link>
           </div>
         </div>
       </div>
@@ -143,11 +139,9 @@ export default function BlogPost() {
       {/* Back Button */}
       <div className="bg-white border-b sticky top-0 z-10">
         <div className="container py-4">
-          <Link href="/blog">
-            <a className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold">
               <ArrowLeft className="w-4 h-4" />
               返回部落格
-            </a>
           </Link>
         </div>
       </div>
@@ -275,8 +269,7 @@ export default function BlogPost() {
               <h2 className="text-2xl font-bold mb-6">相關文章</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost: any) => (
-                  <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`}>
-                    <a className="group">
+                  <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`} className="group">
                       <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                         {/* Featured Image */}
                         <div className="h-40 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden">
@@ -320,7 +313,6 @@ export default function BlogPost() {
                           </div>
                         </div>
                       </Card>
-                    </a>
                   </Link>
                 ))}
               </div>

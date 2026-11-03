@@ -3,13 +3,13 @@
 <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D2BDA1"/><stop offset="1" stop-color="#8D745C"/></linearGradient><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="19" stdDeviation="23" flood-color="#000" flood-opacity=".27"/></filter></defs>
 <rect width="1280" height="720" fill="url(#bg)"/><circle cx="1203" cy="11" r="350" fill="#fff" opacity=".065"/><circle cx="40" cy="720" r="235" fill="#fff" opacity=".055"/>
 <text x="80" y="105" fill="#3C2E23" font-size="50" font-family="Noto Sans TC,Arial,sans-serif" font-weight="750">溫ㄟ宅修</text>
-<text x="82" y="153" fill="#3C2E23" opacity=".8" font-size="18" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2">CRAFT & REPAIR</text>
+<text x="82" y="153" fill="#3C2E23" opacity=".8" font-size="18" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2">CRAFT &amp; REPAIR</text>
 <text x="82" y="266" fill="#3C2E23" font-size="27" font-family="Noto Sans TC,Arial,sans-serif" font-weight="600">修繕，是生活的延續</text>
 <text x="82" y="313" fill="#715949" font-size="17" font-family="Arial,sans-serif" letter-spacing="1">Tainan  ·  Craft  ·  Renovation</text>
 <rect x="447" y="133" width="740" height="446" rx="21" fill="#F0E8DD" filter="url(#shadow)"/><rect x="447" y="133" width="740" height="51" rx="21" fill="#FFFAF2"/><rect x="447" y="164" width="740" height="21" fill="#FFFAF2"/>
 <circle cx="474" cy="158" r="6" fill="#ED7971"/><circle cx="495" cy="158" r="6" fill="#EABC68"/><circle cx="516" cy="158" r="6" fill="#7FBC90"/><rect x="555" y="149" width="495" height="19" rx="9" fill="#8A8A8A" opacity=".11"/>
 <text x="478" y="234" fill="#4C3A2E" font-size="26" font-family="Noto Sans TC,Arial,sans-serif" font-weight="700">溫ㄟ宅修</text>
-<text x="479" y="267" fill="#4C3A2E" opacity=".7" font-size="14" font-family="Arial,sans-serif" letter-spacing="1">CRAFT & REPAIR</text>
+<text x="479" y="267" fill="#4C3A2E" opacity=".7" font-size="14" font-family="Arial,sans-serif" letter-spacing="1">CRAFT &amp; REPAIR</text>
 <rect x="482" y="325" width="147" height="14" rx="7" fill="#9B8064" opacity=".7"/><rect x="482" y="355" width="191" height="9" rx="4" fill="#9B8064" opacity=".32"/><rect x="482" y="377" width="162" height="9" rx="4" fill="#9B8064" opacity=".25"/><rect x="482" y="419" width="163" height="43" rx="10" fill="#9B8064"/><rect x="484" y="500" width="666" height="1" fill="#9B8064" opacity=".4"/>
 <path d="M702 341 L865 220 L1030 341" fill="none" stroke="#94785B" stroke-width="24" stroke-linejoin="round"/><rect x="743" y="342" width="247" height="191" rx="5" fill="#CAB89F"/><rect x="847" y="404" width="72" height="129" fill="#7D6856"/><rect x="774" y="393" width="52" height="62" fill="#F4E6C8"/><path d="M760 483 H834 M760 499 H834 M760 515 H834" stroke="#9D896F" stroke-width="3"/><path d="M945 369 V530" stroke="#AD9A82" stroke-width="5"/>
 <text x="82" y="625" fill="#3C2E23" font-size="16" font-family="Arial,sans-serif" font-weight="700" letter-spacing="2">BERTFOLIO   /   SELECTED WORK</text>

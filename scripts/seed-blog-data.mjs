@@ -117,100 +117,78 @@ try {
 }
 
 async function seedBlogPosts(connection) {
-  console.log('🌱 開始導入部落格文章...\n');
-  
-  try {
-    for (const post of blogPostsData) {
-      // 檢查是否已存在
-      const [existing] = await connection.execute(
-        'SELECT id FROM blogPosts WHERE slugTw = ?',
-        [post.slugTw]
-      );
-      
-      if (existing.length === 0) {
-        await connection.execute(
-          `INSERT INTO blogPosts (
-            titleTw, titleJp, titleMy, slugTw, slugJp, slugMy,
-            excerptTw, excerptJp, excerptMy,
-            contentTw, contentJp, contentMy,
-            categoryTw, categoryJp, categoryMy,
-            tagsTw, tagsJp, tagsMy,
-            keywordsTw, keywordsJp, keywordsMy,
-            authorName, viewCount, isPublished, publishedAt, createdAt, updatedAt
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [
-            post.titleTw, post.titleJp, post.titleMy,
-            post.slugTw, post.slugJp, post.slugMy,
-            post.excerptTw, post.excerptJp, post.excerptMy,
-            post.contentTw, post.contentJp, post.contentMy,
-            post.categoryTw, post.categoryJp, post.categoryMy,
-            post.tagsTw, post.tagsJp, post.tagsMy,
-            post.keywordsTw, post.keywordsJp, post.keywordsMy,
-            post.authorName, post.viewCount, post.isPublished,
-            post.publishedAt, post.createdAt, post.updatedAt
-          ]
-        );
-        console.log(`✓ 已導入：${post.titleTw}`);
-      } else {
-        console.log(`⊘ 已存在：${post.titleTw}`);
-      }
+  // drizzle/schema.ts: blog_posts contains a single slug and category field.
+  // Legacy demo data must never become published merely by running this script.
+  for (const post of blogPostsData) {
+    const slug = post.slugTw;
+    const [existing] = await connection.execute(
+      'SELECT id FROM blog_posts WHERE slug = ? LIMIT 1', [slug]
+    );
+    if (existing.length) {
+      console.log(`⊘ 已存在，略過：${slug}`);
+      continue;
     }
-    
-    console.log('\n✅ 部落格文章導入完成！\n');
-  } catch (error) {
-    console.error('❌ 部落格文章導入失敗：', error);
-    throw error;
+
+    const columns = [
+      'slug', 'title_tw', 'title_jp', 'title_my',
+      'excerpt_tw', 'excerpt_jp', 'excerpt_my',
+      'content_tw', 'content_jp', 'content_my',
+      'category', 'tags', 'seo_keywords_tw', 'seo_keywords_jp',
+      'seo_keywords_my', 'author', 'view_count', 'is_published', 'published_at'
+    ];
+    const values = [
+      slug, post.titleTw, post.titleJp, post.titleMy,
+      post.excerptTw, post.excerptJp, post.excerptMy,
+      post.contentTw, post.contentJp, post.contentMy,
+      post.categoryTw, post.tagsTw, post.keywordsTw, post.keywordsJp,
+      post.keywordsMy, post.authorName, post.viewCount || 0, 0,
+      post.publishedAt
+    ];
+    if (columns.length !== values.length) throw new Error('SQL seed mapping mismatch');
+    await connection.execute(
+      `INSERT INTO blog_posts (${columns.join(', ')}) VALUES (${columns.map(() => '?').join(', ')})`,
+      values
+    );
+    console.log(`✓ 已匯入未發佈草稿：${slug}`);
   }
 }
 
-async function seedCaseStudies(connection) {
-  // This repository's case studies are review-only fixtures. Their image URLs
-  // and claims are not verified, and the old SQL does not match drizzle/schema.ts.
-  const requested = caseStudiesData.filter(study => study.isPublished === true);
-  if (requested.length === 0) {
-    console.log('⊘ 案例仍待內容與圖片核實，略過案例匯入。');
-    return;
-  }
-  // Do not write partially valid data into production; implement a reviewed
-  // import matching the current case_studies schema before enabling this.
-  throw new Error(
-    '案例匯入已暫停：請先核實案例內容、圖片及 case_studies 欄位對應，再實作匯入。'
-  );
+async function seedCaseStudies() {
+  // Unverified demo cases and quantitative claims are NEVER written to DB.
+  // They remain unpublished fixtures, regardless of CLI options.
+  console.log('⊘ 案例樣本未完成審核，不匯入資料庫。');
 }
 
 async function main() {
-  console.log('================================================================================');
-  console.log('部落格和案例研究數據導入腳本');
-  console.log('================================================================================\n');
-  
-  let connection;
-  try {
-    // 連接到數據庫
-    connection = await mysql.createConnection({
-      host: process.env.DB_HOST || 'localhost',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '',
-      database: process.env.DB_NAME || 'bert_wang_portfolio',
-    });
+  const apply = process.argv.includes('--apply-reviewed-drafts');
+  if (!apply) {
+    console.log('[DRY RUN] 無資料庫連線、無資料寫入。');
+    console.log(`文章草稿：${blogPostsData.length} 筆；案例樣本：${caseStudiesData.length} 筆（永不匯入）。`);
+    console.log('若經內容審核後確實要建立未發佈文章草稿，使用 --apply-reviewed-drafts。');
+    return;
+  }
 
-    console.log('✓ 已連接到數據庫\n');
-    
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is required for explicit draft import');
+  }
+
+  // Using the same DATABASE_URL as the application avoids DB_HOST/default DB drift.
+  const connection = await mysql.createConnection(process.env.DATABASE_URL);
+  try {
+    await connection.beginTransaction();
     await seedBlogPosts(connection);
-    await seedCaseStudies(connection);
-    
-    console.log('================================================================================');
-    console.log('✅ 所有數據導入完成！');
-    console.log('================================================================================');
-    
-    await connection.end();
-    process.exit(0);
+    await seedCaseStudies();
+    await connection.commit();
+    console.log('已建立文章草稿；所有新增文章仍為未發佈狀態。');
   } catch (error) {
-    console.error('❌ 導入過程中出現錯誤：', error);
-    if (connection) {
-      await connection.end();
-    }
-    process.exit(1);
+    await connection.rollback();
+    throw error;
+  } finally {
+    await connection.end();
   }
 }
 
-main();
+main().catch(error => {
+  console.error('匯入中止：', error.message);
+  process.exitCode = 1;
+});

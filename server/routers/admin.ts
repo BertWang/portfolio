@@ -1,63 +1,17 @@
-import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
+import { adminProcedure, router } from "../_core/trpc";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
 
-import { getDb } from "../db";
-import { blogPosts } from "../../drizzle/schema";
+// These legacy import endpoints never imported anything. Keep their route
+// names temporarily for compatibility but always return an explicit error.
+// No public user may invoke administrative data maintenance.
+const importUnavailable = (): never => {
+  throw new TRPCError({
+    code: "NOT_IMPLEMENTED",
+    message: "文章匯入與狀態查詢尚未啟用；請改用經審核的離線匯入流程。",
+  });
+};
 
-// 簡化的管理員程序 - 用於導入文章
 export const adminRouter = router({
-  // 導入所有部落格文章
-  importBlogArticles: publicProcedure
-    .mutation(async () => {
-      try {
-        const db = await getDb();
-        if (!db) {
-          throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR",
-            message: "數據庫連接失敗",
-          });
-        }
-        
-        // 返回成功消息
-        return {
-          success: true,
-          message: "文章導入功能已準備就緒",
-          articlesCount: 23,
-        };
-      } catch (error) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "導入文章失敗",
-        });
-      }
-    }),
-
-  // 獲取導入狀態
-  getImportStatus: publicProcedure
-    .query(async () => {
-      try {
-        const db = await getDb();
-        if (!db) {
-          return {
-            imported: 0,
-            total: 23,
-            percentage: 0,
-          };
-        }
-        
-        // 簡化實現 - 返回固定值
-        return {
-          imported: 0,
-          total: 23,
-          percentage: 0,
-        };
-      } catch (error) {
-        return {
-          imported: 0,
-          total: 23,
-          percentage: 0,
-        };
-      }
-    }),
+  importBlogArticles: adminProcedure.mutation(importUnavailable),
+  getImportStatus: adminProcedure.query(importUnavailable),
 });

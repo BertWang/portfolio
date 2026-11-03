@@ -127,8 +127,7 @@ export default function Blog() {
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {postsData.posts.map((post: any) => (
-                <Link key={post.id} href={`/blog/${post.slug}`}>
-                  <a className="group">
+                <Link key={post.id} href={`/blog/${post.slug}`} className="group">
                     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
                       {/* Featured Image */}
                       <div className="h-48 bg-gradient-to-br from-slate-200 to-slate-300 overflow-hidden flex items-center justify-center">
@@ -183,7 +182,6 @@ export default function Blog() {
                         </div>
                       </div>
                     </Card>
-                  </a>
                 </Link>
               ))}
             </div>
@@ -216,11 +214,7 @@ export default function Blog() {
         ) : (
           <div className="text-center py-12">
             <p className="text-slate-600 mb-4">目前沒有文章</p>
-            <Link href="/">
-              <a>
-                <Button>返回首頁</Button>
-              </a>
-            </Link>
+            <Link href="/" className="inline-flex items-center rounded-md bg-[#8B7355] px-4 py-2 font-medium text-white hover:bg-[#7A6347]">返回首頁</Link>
           </div>
         )}
       </div>

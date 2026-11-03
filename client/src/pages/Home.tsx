@@ -324,10 +324,10 @@ export default function Home() {
         : 'Bertfolio | Pertanyaan Kerja Sama'
   )}&body=${encodeURIComponent(
     activeRegion === 'tw'
-      ? '您好，我想詢問合作事項。\\n\\n合作需求：\\n預算範圍：\\n預計時程：\\n'
+      ? '您好，我想詢問合作事項。\n\n合作需求：\n預算範圍：\n預計時程：\n'
       : activeRegion === 'jp'
-        ? 'こんにちは。協業について相談したいです。\\n\\nご相談内容：\\nご予算：\\n希望時期：\\n'
-        : 'Halo, saya ingin bertanya tentang kerja sama.\\n\\nKebutuhan proyek:\\nPerkiraan anggaran:\\nJadwal:\\n'
+        ? 'こんにちは。協業について相談したいです。\n\nご相談内容：\nご予算：\n希望時期：\n'
+        : 'Halo, saya ingin bertanya tentang kerja sama.\n\nKebutuhan proyek:\nPerkiraan anggaran:\nJadwal:\n'
   )}`;
 
   const scrollToContact = () => {

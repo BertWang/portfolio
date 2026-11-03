@@ -39,11 +39,7 @@ export const getBlogPostsRouter = publicProcedure
     if (search) {
       // Only published posts are searchable. Escape LIKE wildcard characters
       // so a visitor's percent or underscore is treated as literal text.
-      const term = search.replace(/[\\%_]/g, "\\    if (category) {
-      whereConditions.push(eq(blogPosts.category, category));
-    }
-
-    // Build query with sorting");
+      const term = search.replace(/[\\%_]/g, "\\$&");
       const columns = language === 'jp'
         ? [blogPosts.titleJp, blogPosts.excerptJp, blogPosts.titleTw, blogPosts.excerptTw]
         : language === 'my'

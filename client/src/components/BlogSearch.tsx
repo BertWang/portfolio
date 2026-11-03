@@ -101,7 +101,7 @@ export function BlogSearch({ language = 'tw' }: BlogSearchProps) {
               {searchResults.map((post: any) => (
                 <Link
                   key={post.id}
-                  href={`/blog/${post.slugTw}`}
+                  href={`/blog/${post.slug}`}
                   onClick={() => {
                     setSearchQuery('');
                     setIsOpen(false);

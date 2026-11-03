@@ -488,7 +488,7 @@ export default function Home() {
             <div className="flex justify-center md:justify-start order-2 md:order-1">
               <div className="relative w-64 h-80 md:w-72 md:h-96 rounded-lg overflow-hidden shadow-lg border border-gray-200">
                 <img
-                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663032489249/coDLqCbRAJeBjXhk.jpeg"
+                  src="/images/bert-profile.jpg"
                   alt="王純瑋"
                   className="w-full h-full object-cover"
                 />

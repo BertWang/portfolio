@@ -45,7 +45,7 @@ export interface SEOConfig {
 
 const baseUrl = 'https://bertfolio-vncqhm2r.manus.space';
 const ownerName = '王純瑋';
-const ownerImage = `${baseUrl}/images/IMG_5972.jpeg`;
+const ownerImage = `${baseUrl}/images/bert-profile.jpg`;
 
 export const seoConfigs: Record<string, SEOConfig> = {
   tw: {

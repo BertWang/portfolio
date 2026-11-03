@@ -7,6 +7,17 @@ interface BlogSearchProps {
   language?: 'tw' | 'jp' | 'my';
 }
 
+interface SearchPost {
+  id: number;
+  slug: string;
+  titleTw: string;
+  titleJp?: string | null;
+  titleMy?: string | null;
+  excerptTw?: string | null;
+  excerptJp?: string | null;
+  excerptMy?: string | null;
+}
+
 const SEARCH_LABELS = {
   tw: { placeholder: '搜尋文章...', noResults: '未找到相關文章', loading: '搜尋中...', error: '暫時無法搜尋，請稍後重試' },
   jp: { placeholder: '記事を検索...', noResults: '関連する記事が見つかりません', loading: '検索中...', error: '検索できません。しばらくしてからお試しください' },
@@ -32,11 +43,11 @@ export function BlogSearch({ language = 'tw' }: BlogSearchProps) {
     staleTime: 30_000,
     retry: 1,
   });
-  const results = data?.posts ?? [];
+  const results = (data?.posts ?? []) as SearchPost[];
   const showResults = isOpen && searchQuery.trim().length > 0;
   const pending = searchQuery.trim() !== debouncedSearch || isFetching;
 
-  const localized = (post: { titleTw: string; titleJp?: string | null; titleMy?: string | null; excerptTw?: string | null; excerptJp?: string | null; excerptMy?: string | null }) => ({
+  const localized = (post: SearchPost) => ({
     title: (language === 'jp' ? post.titleJp : language === 'my' ? post.titleMy : post.titleTw) || post.titleTw,
     excerpt: (language === 'jp' ? post.excerptJp : language === 'my' ? post.excerptMy : post.excerptTw) || post.excerptTw,
   });

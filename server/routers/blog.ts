@@ -7,7 +7,7 @@ import { publicProcedure } from '../_core/trpc';
 import { z } from 'zod';
 import { getDb } from '../db';
 import { blogPosts, caseStudies } from '../../drizzle/schema';
-import { eq, and, desc, asc } from 'drizzle-orm';
+import { eq, and, desc, asc, count } from 'drizzle-orm';
 
 /**
  * Get blog posts with pagination and filtering
@@ -48,12 +48,17 @@ export const getBlogPostsRouter = publicProcedure
 
     // Execute query with pagination
     const posts = await query.limit(limit).offset(offset);
+    // Match total against all filtered published rows, not the current page.
+    const [countRow] = await db
+      .select({ total: count() })
+      .from(blogPosts)
+      .where(and(...whereConditions));
 
     return {
       posts,
       page,
       limit,
-      total: posts.length,
+      total: countRow?.total ?? 0,
     };
   });
 

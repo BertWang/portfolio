@@ -34,5 +34,7 @@ jobs:
         run: pnpm check
       - name: Unit tests
         run: pnpm test
+      - name: Verify importer is read-only by default
+        run: node scripts/seed-blog-data.mjs
       - name: Production build
         run: pnpm build

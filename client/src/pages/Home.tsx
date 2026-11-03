@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, Phone, Mail, ExternalLink, Menu, X, Send, ArrowRight, BookOpen } from 'lucide-react';
-import { useAuth } from '@/_core/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { getLanguageFromPath, getLanguageCode, seoConfigs, updateSEOHead } from '@/lib/seoConfig';
 import { useLoading } from '@/contexts/LoadingContext';
 
 export default function Home() {
-  // The userAuth hooks provides authentication state
-  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
-  let { user, loading, error, isAuthenticated, logout } = useAuth();
   const [location] = useLocation();
   const language = getLanguageFromPath(location);
   const languageCode = getLanguageCode(language);
@@ -62,15 +58,9 @@ export default function Home() {
       contact: '立即咨詢',
       consultationTitle: 'Email 合作洽詢',
       consultationDesc: '歡迎以電子郵件說明合作需求，直接寄到我的信箱。',
-      consultationName: '您的名稱',
-      consultationEmail: '您的郵箱',
-      consultationService: '服務類型',
-      consultationMessage: '簡短說明您的需求',
       consultationSubmit: '撰寫合作 Email',
-      serviceOptions: ['網頁設計', 'PHP 開發', '品牌設計', '影像創作', 'SEO 優化', '其他'],
       skillsCTA: '開始您的項目',
       contactCall: '立即來電',
-      contactEmail: 'EMAIL咨詢',
       civicTitle: '用設計與影像，為台灣的故事發聲',
       civicSubtitle: '不只是製作網站，更是透過紀錄片、影像創作與公民參與，守護文化記憶、實踐社會責任',
       civicMainText: '18 年來，我用代碼和設計為品牌創造溫度。但我也相信，設計的力量不只在於商業，更在於能否為社會議題發聲。',
@@ -156,15 +146,9 @@ export default function Home() {
       contact: 'Consult Now',
       consultationTitle: 'メールでお問い合わせ',
       consultationDesc: 'ご相談内容やコラボレーションのご提案は、メールでお知らせください。',
-      consultationName: 'Your Name',
-      consultationEmail: 'Your Email',
-      consultationService: 'Service Type',
-      consultationMessage: 'Brief description of your needs',
       consultationSubmit: 'メールを作成',
-      serviceOptions: ['Web Design', 'PHP Development', 'Brand Design', 'Video Creation', 'SEO Optimization', 'Other'],
       skillsCTA: 'Start Your Project',
       contactCall: 'Call Now',
-      contactEmail: 'Email Inquiry',
       civicTitle: 'デザインと映像で、台湾の物語を発信する',
       civicSubtitle: 'ウェブサイト制作だけでなく、ドキュメンタリー、映像制作、市民参加を通じて、文化的記憶を守り、社会的責任を実践する',
       civicMainText: '18 年間、私はコードとデザインでブランドに温かみを与えてきました。しかし、デザインの力は商業だけではなく、社会的課題に声を上げることができるはずです。',
@@ -250,15 +234,9 @@ export default function Home() {
       contact: 'Konsultasi Sekarang',
       consultationTitle: 'Hubungi melalui Email',
       consultationDesc: 'Silakan kirim email untuk menjelaskan kebutuhan atau rencana kerja sama Anda.',
-      consultationName: 'Nama Anda',
-      consultationEmail: 'Email Anda',
-      consultationService: 'Jenis Layanan',
-      consultationMessage: 'Deskripsi singkat tentang kebutuhan Anda',
       consultationSubmit: 'Tulis Email',
-      serviceOptions: ['Desain Web', 'Pengembangan PHP', 'Desain Merek', 'Kreasi Video', 'Optimasi SEO', 'Lainnya'],
       skillsCTA: 'Mulai Proyek Anda',
       contactCall: 'Hubungi Sekarang',
-      contactEmail: 'Konsultasi Email',
       civicTitle: 'Reka Bentuk dan Video: Memberi Suara kepada Cerita Malaysia',
       civicSubtitle: 'Melampaui desain web, saya melestarikan memori budaya dan mempraktikkan tanggung jawab sosial melalui dokumenter, produksi video, dan partisipasi sipil.',
       civicMainText: 'Selama 18 tahun, saya telah menggunakan kode dan desain untuk membawa kehangatan ke merek. Tetapi saya percaya bahwa kekuatan desain melampaui perdagangan—dapat memperkuat suara sosial dan mendorong perubahan.',
